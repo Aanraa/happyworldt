@@ -1,0 +1,18 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    function verified() { return request.auth != null && request.auth.token.email_verified == true; }
+    function bootstrapAdmin() { return verified() && request.auth.token.email == 'casalablanca11@gmail.com'; }
+    function admin() { return bootstrapAdmin() || (verified() && firestore.get(/databases/(default)/documents/admins/$(request.auth.uid)).data.active == true); }
+    match /tours/{tourId}/{allPaths=**} {
+      allow read: if true;
+      allow write: if admin() && request.resource.size < 10 * 1024 * 1024 && request.resource.contentType.matches('image/.*');
+      allow delete: if admin();
+    }
+    match /articles/{articleId}/{allPaths=**} {
+      allow read: if true;
+      allow write: if admin() && request.resource.size < 10 * 1024 * 1024 && request.resource.contentType.matches('image/.*');
+      allow delete: if admin();
+    }
+  }
+}

@@ -1,0 +1,53 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function verified() { return signedIn() && request.auth.token.email_verified == true; }
+    function bootstrapAdmin() { return verified() && request.auth.token.email == 'casalablanca11@gmail.com'; }
+    function admin() { return bootstrapAdmin() || (verified() && exists(/databases/$(database)/documents/admins/$(request.auth.uid)) && get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.active == true); }
+
+    match /admins/{uid} {
+      allow read: if admin() && (request.auth.uid == uid || admin());
+      allow create, update: if bootstrapAdmin() && request.resource.data.active == true && request.resource.data.role == 'admin';
+      allow delete: if bootstrapAdmin();
+    }
+
+    match /users/{uid} {
+      allow read, create, update: if verified() && request.auth.uid == uid;
+      allow delete: if admin() && request.auth.uid == uid;
+    }
+
+    match /tours/{id} {
+      allow read: if true;
+      allow create, update, delete: if admin();
+    }
+
+    match /articles/{id} {
+      allow read: if (resource.data.published == true) || admin();
+      allow create, update, delete: if admin();
+    }
+
+    match /bookings/{id} {
+      allow create: if verified()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.status == 'new'
+        && request.resource.data.keys().hasOnly(['uid','tourId','tourName','departureDate','fullName','phone','email','travelers','note','status','createdAt']);
+      allow read: if admin() || (verified() && resource.data.uid == request.auth.uid);
+      allow update, delete: if admin();
+    }
+
+    match /messages/{id} {
+      allow create: if request.resource.data.keys().hasOnly(['name','email','phone','message','createdAt'])
+        && request.resource.data.name is string && request.resource.data.name.size() <= 120
+        && request.resource.data.email is string && request.resource.data.email.size() <= 200
+        && request.resource.data.phone is string && request.resource.data.phone.size() <= 50
+        && request.resource.data.message is string && request.resource.data.message.size() <= 3000;
+      allow read, update, delete: if admin();
+    }
+
+    match /settings/{id} {
+      allow read: if true;
+      allow write: if admin();
+    }
+  }
+}
