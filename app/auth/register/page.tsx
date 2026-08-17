@@ -1,2 +1,7 @@
-'use client'; import {useState} from 'react'; import {createUserWithEmailAndPassword,GoogleAuthProvider,signInWithPopup} from 'firebase/auth'; import {auth} from '@/lib/firebase'; import {useRouter} from 'next/navigation'; import Link from 'next/link';
-export default function Register(){const[email,setEmail]=useState('');const[pw,setPw]=useState('');const[err,setErr]=useState('');const router=useRouter();async function reg(){try{await createUserWithEmailAndPassword(auth,email,pw);router.push('/account')}catch(e:any){setErr(e.message)}}async function google(){try{await signInWithPopup(auth,new GoogleAuthProvider());router.push('/account')}catch(e:any){setErr(e.message)}}return <main className="mx-auto max-w-md px-4 py-16"><div className="rounded-3xl border p-7 dark:border-slate-800"><h1 className="text-3xl font-black">Create account</h1>{err&&<p className="mt-4 text-sm text-red-600">{err}</p>}<input className="mt-6 w-full rounded-xl border p-3 dark:bg-slate-900" placeholder="Email" type="email" onChange={e=>setEmail(e.target.value)}/><input className="mt-3 w-full rounded-xl border p-3 dark:bg-slate-900" placeholder="Password (6+ characters)" type="password" onChange={e=>setPw(e.target.value)}/><button onClick={reg} className="mt-4 w-full rounded-xl bg-blue-600 p-3 font-bold text-white">Create account</button><button onClick={google} className="mt-3 w-full rounded-xl border p-3 font-bold">Sign up with Google</button><p className="mt-5 text-sm">Already have an account? <Link className="font-bold text-blue-600" href="/auth/login">Login</Link></p></div></main>}
+'use client';
+
+import AuthForm from '@/components/auth/AuthForm';
+
+export default function RegisterPage() {
+  return <AuthForm initialMode="register" />;
+}

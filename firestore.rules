@@ -13,7 +13,7 @@ service cloud.firestore {
     }
 
     match /users/{uid} {
-      allow read, create, update: if verified() && request.auth.uid == uid;
+      allow read, create, update: if signedIn() && request.auth.uid == uid;
       allow delete: if admin() && request.auth.uid == uid;
     }
 
@@ -28,11 +28,11 @@ service cloud.firestore {
     }
 
     match /bookings/{id} {
-      allow create: if verified()
+      allow create: if signedIn()
         && request.resource.data.uid == request.auth.uid
         && request.resource.data.status == 'new'
         && request.resource.data.keys().hasOnly(['uid','tourId','tourName','departureDate','fullName','phone','email','travelers','note','status','createdAt']);
-      allow read: if admin() || (verified() && resource.data.uid == request.auth.uid);
+      allow read: if admin() || (signedIn() && resource.data.uid == request.auth.uid);
       allow update, delete: if admin();
     }
 
