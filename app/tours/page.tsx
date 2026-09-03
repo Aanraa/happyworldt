@@ -49,11 +49,14 @@ export default function Tours() {
       collection(db, 'tours'),
       (snapshot) => {
         const tours = snapshot.docs
-          .map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-          }))
-          .filter((tour) => tour.active !== false) as Tour[];
+          .map(
+            (doc) =>
+              ({
+                id: doc.id,
+                ...doc.data(),
+              }) as Tour,
+          )
+          .filter((tour) => tour.active !== false);
 
         setItems(tours);
         setLoading(false);
