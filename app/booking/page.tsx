@@ -12,6 +12,26 @@ import { useAuth } from '@/components/AuthProvider';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
+function getToday() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, '0');
+  const day = String(today.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
+function isValidDepartureDate(value: string, today: string) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value) || value < today) return false;
+
+  const [year, month, day] = value.split('-').map(Number);
+  const parsed = new Date(year, month - 1, day);
+  return (
+    parsed.getFullYear() === year &&
+    parsed.getMonth() === month - 1 &&
+    parsed.getDate() === day
+  );
+}
+
 export default function Booking() {
   const { user, loading } = useAuth();
   const router = useRouter();
@@ -35,7 +55,12 @@ export default function Booking() {
 
     const unsub = onSnapshot(collection(db, 'tours'), (s) =>
       setTours(
-        s.docs.map((d) => ({ id: d.id, ...d.data() })).filter((t) => t.active),
+        s.docs
+          .map(
+            (d) =>
+              ({ id: d.id, ...d.data() }) as { id: string; active?: boolean },
+          )
+          .filter((t) => t.active),
       ),
     );
 
@@ -60,6 +85,10 @@ export default function Booking() {
       </main>
     );
 
+  const uid = user.uid;
+  const today = getToday();
+  const dateIsValid = isValidDepartureDate(date, today);
+
   function validate() {
     if (!tourId) {
       setMsg('Please select a tour.');
@@ -69,8 +98,12 @@ export default function Booking() {
       setMsg('Fill your name and phone.');
       return false;
     }
-    if (!date) {
-      setMsg('Please choose a departure date.');
+    if (!dateIsValid) {
+      setMsg(
+        date && date < today
+          ? 'Please choose a future departure date.'
+          : 'Please choose a valid departure date.',
+      );
       return false;
     }
     return true;
@@ -100,7 +133,7 @@ export default function Booking() {
 
     try {
       await addDoc(collection(db, 'bookings'), {
-        uid: user.uid,
+        uid,
         tourId: pendingBooking.tourId,
         tourName: pendingBooking.tourName,
         departureDate: pendingBooking.departureDate,
@@ -150,6 +183,7 @@ export default function Booking() {
             <span className="text-sm font-medium">Departure date</span>
             <input
               type="date"
+              min={today}
               className="mt-2 w-full rounded-xl border p-3 dark:bg-slate-900"
               value={date}
               onChange={(e) => setDate(e.target.value)}
@@ -216,7 +250,8 @@ export default function Booking() {
         <div className="mt-6 flex justify-end">
           <button
             onClick={submit}
-            className="rounded-xl bg-slate-900 px-5 py-3 text-white"
+            disabled={!dateIsValid}
+            className="rounded-xl bg-slate-900 px-5 py-3 text-white disabled:cursor-not-allowed disabled:opacity-50"
           >
             Review booking
           </button>

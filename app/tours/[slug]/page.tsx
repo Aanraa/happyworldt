@@ -40,6 +40,27 @@ type BookingForm = {
   children: number;
 };
 
+function getToday() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, '0');
+  const day = String(today.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
+function isValidDepartureDate(value: string, today: string) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value) || value < today) return false;
+
+  const [year, month, day] = value.split('-').map(Number);
+  const parsed = new Date(year, month - 1, day);
+
+  return (
+    parsed.getFullYear() === year &&
+    parsed.getMonth() === month - 1 &&
+    parsed.getDate() === day
+  );
+}
+
 export default function TourDetail({ params }: TourDetailProps) {
   const router = useRouter();
   const { user, loading: authLoading } = useAuth();
@@ -146,7 +167,14 @@ export default function TourDetail({ params }: TourDetailProps) {
     ? data.departureDates.filter(Boolean)
     : [];
 
-  const hasDepartureDates = departureDates.length > 0;
+  const today = getToday();
+  const validDepartureDates = departureDates.filter((date) =>
+    isValidDepartureDate(date, today),
+  );
+  const hasDepartureDates = validDepartureDates.length > 0;
+  const travelerCount = form.adults + form.children;
+  const groupCount = Number(data?.groupCount);
+  const groupLimitReached = groupCount > 0 && travelerCount >= groupCount;
 
   // ==========================================
   // FAVORITES
@@ -192,11 +220,13 @@ export default function TourDetail({ params }: TourDetailProps) {
   // ==========================================
 
   function openBooking() {
+    if (!hasDepartureDates) return;
+
     setBookingError('');
     setBookingSuccess(false);
 
     setForm({
-      departureDate: departureDates[0] || '',
+      departureDate: validDepartureDates[0] || '',
       adults: 1,
       children: 0,
     });
@@ -239,8 +269,11 @@ export default function TourDetail({ params }: TourDetailProps) {
       return;
     }
 
-    if (hasDepartureDates && !form.departureDate) {
-      setBookingError('Аялах огноогоо сонгоно уу.');
+    if (
+      !isValidDepartureDate(form.departureDate, today) ||
+      !validDepartureDates.includes(form.departureDate)
+    ) {
+      setBookingError('Аялах боломжтой огноогоо сонгоно уу.');
       return;
     }
 
@@ -251,6 +284,13 @@ export default function TourDetail({ params }: TourDetailProps) {
 
     if (form.children < 0) {
       setBookingError('Хүүхдийн тоо буруу байна.');
+      return;
+    }
+
+    if (groupLimitReached) {
+      setBookingError(
+        `Нийт аялагчдын тоо группийн тооноос бага байх ёстой. Дээд тал нь ${groupCount - 1} аялагч сонгоно уу.`,
+      );
       return;
     }
 
@@ -452,11 +492,21 @@ export default function TourDetail({ params }: TourDetailProps) {
                   QUICK INFO
               ========================================== */}
 
-              <div className="mt-8 grid gap-3 sm:grid-cols-3">
+              <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                 <InfoCard
                   icon={<CalendarDays size={17} />}
                   label="Хугацаа"
                   value={`${data.durationDays || 0} өдөр`}
+                />
+
+                <InfoCard
+                  icon={<Users size={17} />}
+                  label="Группийн тоо"
+                  value={
+                    data.groupCount
+                      ? `${data.groupCount} групп`
+                      : 'Мэдээлэл хараахан ороогүй'
+                  }
                 />
 
                 <InfoCard
@@ -612,7 +662,7 @@ export default function TourDetail({ params }: TourDetailProps) {
                       </p>
 
                       <p className="mt-1 text-sm font-semibold">
-                        {departureDates.length} огноо
+                        {validDepartureDates.length} огноо
                       </p>
                     </div>
                   </div>
@@ -621,7 +671,8 @@ export default function TourDetail({ params }: TourDetailProps) {
                 <button
                   type="button"
                   onClick={openBooking}
-                  className="mt-7 inline-flex h-12 w-full items-center justify-center rounded-xl bg-slate-950 px-5 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 active:scale-[0.99] dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200"
+                  disabled={!hasDepartureDates}
+                  className="mt-7 inline-flex h-12 w-full items-center justify-center rounded-xl bg-slate-950 px-5 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-slate-950 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200 dark:disabled:hover:bg-white"
                 >
                   Энэ аяллыг захиалах
                 </button>
@@ -818,7 +869,7 @@ export default function TourDetail({ params }: TourDetailProps) {
                       >
                         <option value="">Огноо сонгоно уу</option>
 
-                        {departureDates.map((date) => (
+                        {validDepartureDates.map((date) => (
                           <option key={date} value={date}>
                             {formatDate(date)}
                           </option>
@@ -892,7 +943,7 @@ export default function TourDetail({ params }: TourDetailProps) {
                     </span>
 
                     <span className="text-sm font-semibold">
-                      {form.adults + form.children}
+                      {travelerCount}
                     </span>
                   </div>
 
@@ -915,7 +966,7 @@ export default function TourDetail({ params }: TourDetailProps) {
                 <button
                   type="button"
                   onClick={createBooking}
-                  disabled={bookingLoading || !user}
+                  disabled={bookingLoading || !user || groupLimitReached}
                   className="mt-5 inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-slate-950 px-5 text-sm font-semibold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200"
                 >
                   {bookingLoading ? (

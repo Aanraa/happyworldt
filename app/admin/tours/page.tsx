@@ -25,6 +25,7 @@ import {
   Star,
   Trash2,
   Upload,
+  Users,
   X,
 } from 'lucide-react';
 import { db, storage } from '@/lib/firebase';
@@ -49,6 +50,7 @@ const blank: any = {
   image: '',
   gallery: [],
   durationDays: 1,
+  groupCount: 1,
   startingPrice: 0,
   discountPrice: 0,
   currency: 'MNT',
@@ -286,6 +288,18 @@ export default function AdminTours() {
       newErrors.durationDays = 'Аяллын хугацаа 1-ээс дээш бүхэл тоо байна.';
     } else if (duration > 365) {
       newErrors.durationDays = 'Аяллын хугацаа 365 хоногоос их байж болохгүй.';
+    }
+
+    const groupCount = Number(form.groupCount);
+
+    if (
+      form.groupCount === '' ||
+      form.groupCount === null ||
+      form.groupCount === undefined
+    ) {
+      newErrors.groupCount = 'Группийн тоо оруулна уу.';
+    } else if (!Number.isInteger(groupCount) || groupCount < 1) {
+      newErrors.groupCount = 'Группийн тоо 1-ээс дээш бүхэл тоо байна.';
     }
 
     /*
@@ -803,6 +817,8 @@ export default function AdminTours() {
 
         durationDays: Number(form.durationDays),
 
+        groupCount: Number(form.groupCount),
+
         startingPrice: Number(form.startingPrice),
 
         discountPrice: Number(form.discountPrice || 0),
@@ -1319,6 +1335,29 @@ export default function AdminTours() {
               />
 
               {fieldError('discountPrice')}
+            </div>
+
+            {/* GROUP COUNT */}
+
+            <div data-error-field="groupCount">
+              <FieldLabel required>Группийн тоо</FieldLabel>
+
+              <div className="relative">
+                <Users className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+
+                <input
+                  className={`${inputClass} pl-10 ${
+                    hasError('groupCount') ? 'border-red-400' : ''
+                  }`}
+                  type="number"
+                  min="1"
+                  placeholder="Группийн тоо"
+                  value={form.groupCount}
+                  onChange={(e) => set('groupCount', e.target.value)}
+                />
+              </div>
+
+              {fieldError('groupCount')}
             </div>
 
             {/* CHILDREN PRICE */}
