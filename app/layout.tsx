@@ -4,6 +4,7 @@ import ThemeProvider from '@/components/ThemeProvider';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Plus_Jakarta_Sans } from 'next/font/google';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ['latin', 'cyrillic-ext'],
@@ -26,6 +27,7 @@ export default function RootLayout({
             <Footer />
           </AuthProvider>
         </ThemeProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
