@@ -558,28 +558,44 @@ export default function AdminTours() {
    * ========================================
    */
 
-  function addImageUrl() {
-    const url = imageUrl.trim();
+  function toSafeHttpUrl(raw: string): string | null {
+    try {
+      const parsed = new URL(raw.trim());
 
-    if (!url) {
+      if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') {
+        return null;
+      }
+
+      return parsed.toString();
+    } catch {
+      return null;
+    }
+  }
+
+  function addImageUrl() {
+    const raw = imageUrl.trim();
+
+    if (!raw) {
       showToast('error', 'Зургийн URL оруулна уу.');
 
       return;
     }
 
-    if (!isValidUrl(url)) {
+    const safeUrl = toSafeHttpUrl(raw);
+
+    if (!safeUrl || !isValidUrl(safeUrl)) {
       showToast('error', 'Зургийн URL буруу байна.');
 
       return;
     }
 
     setForm((prev: any) => {
-      const gallery = [...(prev.gallery || []), url];
+      const gallery = [...(prev.gallery || []), safeUrl];
 
       return {
         ...prev,
         gallery,
-        image: prev.image || url,
+        image: prev.image || safeUrl,
       };
     });
 
