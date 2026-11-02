@@ -78,7 +78,7 @@ export default function Booking() {
         </p>
         <Link
           className="mt-6 inline-block rounded-xl bg-blue-600 px-5 py-3 font-bold text-white"
-          href={`/auth/login?next=/booking${tourId ? `?tour=${tourId}` : ''}`}
+          href={`/auth/login?next=/booking${tourId ? `?tour=${encodeURIComponent(tourId)}` : ''}`}
         >
           Login
         </Link>
