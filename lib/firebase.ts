@@ -2,16 +2,24 @@ import { getApp, getApps, initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
+
 const config = {
-  apiKey: 'AIzaSyAuCu49rNeTFTXDGx4fvRLB4y-osRi2HlE',
-  authDomain: 'happyworld-57729.firebaseapp.com',
-  projectId: 'happyworld-57729',
-  storageBucket: 'happyworld-57729.firebasestorage.app',
-  messagingSenderId: '648346247876',
-  appId: '1:648346247876:web:d98b9a2ec5ca7c1b585f91',
-  measurementId: 'G-3531J7C3E1',
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY ?? '',
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN ?? '',
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID ?? '',
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET ?? '',
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID ?? '',
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID ?? '',
 };
+
 export const firebaseConfigured = Object.values(config).every(Boolean);
+
+if (!firebaseConfigured) {
+  throw new Error(
+    'Missing Firebase environment variables. Add the NEXT_PUBLIC_FIREBASE_* values to your .env file or deployment environment.'
+  );
+}
+
 const app = getApps().length ? getApp() : initializeApp(config);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
