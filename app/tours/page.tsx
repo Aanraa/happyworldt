@@ -155,7 +155,7 @@ export default function Tours() {
         {/* HERO */}
         <section className="mx-auto max-w-4xl text-center">
           <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-slate-400">
-            HWT
+            HWT COOL
           </p>
 
           <h1 className="mt-5 text-4xl font-bold tracking-[-0.05em] sm:text-5xl lg:text-[62px] lg:leading-[1.03]">
