@@ -16,7 +16,7 @@ export const firebaseConfigured = Object.values(config).every(Boolean);
 
 if (!firebaseConfigured) {
   throw new Error(
-    'Missing Firebase environment variables. Add the NEXT_PUBLIC_FIREBASE_* values to your .env file or deployment environment.'
+    'Missing Firebase environment variables. Add the NEXT_PUBLIC_FIREBASE_* values to your .env file or deployment environment.',
   );
 }
 

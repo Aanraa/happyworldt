@@ -37,9 +37,7 @@ async function main() {
 
   await Promise.all(updates);
 
-  console.log(
-    `Updated ${updates.length} tour documents to include active: true.`,
-  );
+  console.log(`Updated ${updates.length} tour documents to include active: true.`);
 }
 
 main().catch((error) => {

@@ -1,14 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import {
-  collection,
-  doc,
-  onSnapshot,
-  query,
-  setDoc,
-  where,
-} from 'firebase/firestore';
+import { collection, doc, onSnapshot, query, setDoc, where } from 'firebase/firestore';
 import Link from 'next/link';
 import { ArrowRight, CalendarDays, Heart, MapPin } from 'lucide-react';
 import { db } from '@/lib/firebase';
@@ -89,10 +82,7 @@ export default function Tours() {
     return () => unsubscribe();
   }, [user]);
 
-  async function toggleFavorite(
-    event: React.MouseEvent<HTMLButtonElement>,
-    tourId: string,
-  ) {
+  async function toggleFavorite(event: React.MouseEvent<HTMLButtonElement>, tourId: string) {
     event.preventDefault();
     event.stopPropagation();
 
@@ -119,8 +109,7 @@ export default function Tours() {
     );
   }
 
-  const filteredTours =
-    cat === 'all' ? items : items.filter((tour) => tour.category === cat);
+  const filteredTours = cat === 'all' ? items : items.filter((tour) => tour.category === cat);
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-white text-slate-950 dark:bg-slate-950 dark:text-white">
@@ -141,10 +130,8 @@ export default function Tours() {
             )
           `,
           backgroundSize: '64px 64px',
-          maskImage:
-            'linear-gradient(to bottom, black 0%, black 65%, transparent 100%)',
-          WebkitMaskImage:
-            'linear-gradient(to bottom, black 0%, black 65%, transparent 100%)',
+          maskImage: 'linear-gradient(to bottom, black 0%, black 65%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 65%, transparent 100%)',
         }}
       />
 
@@ -161,14 +148,12 @@ export default function Tours() {
           <h1 className="mt-5 text-4xl font-bold tracking-[-0.05em] sm:text-5xl lg:text-[62px] lg:leading-[1.03]">
             Аяллаа
             <br />
-            <span className="text-slate-400 dark:text-slate-500">
-              сонгоорой.
-            </span>
+            <span className="text-slate-400 dark:text-slate-500">сонгоорой.</span>
           </h1>
 
           <p className="mx-auto mt-7 max-w-2xl text-[15px] leading-7 text-slate-500 dark:text-slate-400 sm:text-base">
-            Өөрт тохирох аяллаа сонгон, шинэ газар орон, шинэ дурсамжийг Happy
-            World Tour-той хамт бүтээгээрэй.
+            Өөрт тохирох аяллаа сонгон, шинэ газар орон, шинэ дурсамжийг Happy World Tour-той хамт
+            бүтээгээрэй.
           </p>
         </section>
 
@@ -184,16 +169,11 @@ export default function Tours() {
                     key={category.value}
                     type="button"
                     onClick={() => setCat(category.value)}
-                    className={`
-                      rounded-xl px-4 py-2.5 text-sm font-semibold
-                      transition-all duration-300
-                      sm:px-6
-                      ${
-                        active
-                          ? 'bg-slate-950 text-white shadow-sm dark:bg-white dark:text-slate-950'
-                          : 'text-slate-500 hover:bg-slate-50 hover:text-slate-950 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white'
-                      }
-                    `}
+                    className={`rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-300 sm:px-6 ${
+                      active
+                        ? 'bg-slate-950 text-white shadow-sm dark:bg-white dark:text-slate-950'
+                        : 'text-slate-500 hover:bg-slate-50 hover:text-slate-950 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white'
+                    } `}
                   >
                     {category.label}
                   </button>
@@ -220,9 +200,7 @@ export default function Tours() {
               </h2>
             </div>
 
-            <p className="hidden text-sm text-slate-400 sm:block">
-              {filteredTours.length} аялал
-            </p>
+            <p className="hidden text-sm text-slate-400 sm:block">{filteredTours.length} аялал</p>
           </div>
         </section>
 
@@ -259,11 +237,7 @@ export default function Tours() {
                     <button
                       type="button"
                       onClick={(event) => toggleFavorite(event, tour.id)}
-                      aria-label={
-                        isFavorite
-                          ? 'Favorites-аас устгах'
-                          : 'Favorites-д нэмэх'
-                      }
+                      aria-label={isFavorite ? 'Favorites-аас устгах' : 'Favorites-д нэмэх'}
                       className="absolute right-4 top-4 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-white/70 bg-white/85 text-slate-700 shadow-md backdrop-blur-sm transition hover:scale-105 hover:bg-white dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-200"
                     >
                       <Heart

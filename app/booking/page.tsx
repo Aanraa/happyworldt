@@ -1,12 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import {
-  addDoc,
-  collection,
-  onSnapshot,
-  serverTimestamp,
-} from 'firebase/firestore';
+import { addDoc, collection, onSnapshot, serverTimestamp } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import { useAuth } from '@/components/AuthProvider';
 import { useRouter } from 'next/navigation';
@@ -26,9 +21,7 @@ function isValidDepartureDate(value: string, today: string) {
   const [year, month, day] = value.split('-').map(Number);
   const parsed = new Date(year, month - 1, day);
   return (
-    parsed.getFullYear() === year &&
-    parsed.getMonth() === month - 1 &&
-    parsed.getDate() === day
+    parsed.getFullYear() === year && parsed.getMonth() === month - 1 && parsed.getDate() === day
   );
 }
 
@@ -56,10 +49,7 @@ export default function Booking() {
     const unsub = onSnapshot(collection(db, 'tours'), (s) =>
       setTours(
         s.docs
-          .map(
-            (d) =>
-              ({ id: d.id, ...d.data() }) as { id: string; active?: boolean },
-          )
+          .map((d) => ({ id: d.id, ...d.data() }) as { id: string; active?: boolean })
           .filter((t) => t.active),
       ),
     );
@@ -73,9 +63,7 @@ export default function Booking() {
     return (
       <main className="mx-auto max-w-lg px-4 py-20 text-center">
         <h1 className="text-3xl font-black">Login required</h1>
-        <p className="mt-3 text-slate-500">
-          Please sign in before registering for a tour.
-        </p>
+        <p className="mt-3 text-slate-500">Please sign in before registering for a tour.</p>
         <Link
           className="mt-6 inline-block rounded-xl bg-blue-600 px-5 py-3 font-bold text-white"
           href={`/auth/login?next=/booking${tourId ? `?tour=${encodeURIComponent(tourId)}` : ''}`}
@@ -157,9 +145,7 @@ export default function Booking() {
   return (
     <main className="mx-auto max-w-2xl px-4 py-12">
       <h1 className="text-4xl font-black">Register for a tour</h1>
-      <p className="mt-2 text-slate-500">
-        Your booking will be saved to your account.
-      </p>
+      <p className="mt-2 text-slate-500">Your booking will be saved to your account.</p>
 
       <div className="mt-8 rounded-3xl border p-6 dark:border-slate-800">
         <label className="block">
@@ -208,9 +194,7 @@ export default function Booking() {
                 onChange={(e) => setChildren(Number(e.target.value))}
               />
             </div>
-            <div className="mt-1 text-xs text-slate-500">
-              Left: adults | Right: children
-            </div>
+            <div className="mt-1 text-xs text-slate-500">Left: adults | Right: children</div>
           </div>
         </div>
 
@@ -261,10 +245,7 @@ export default function Booking() {
       {/* Confirmation modal */}
       {confirmOpen && pendingBooking && (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
-          <div
-            className="absolute inset-0 bg-black/40"
-            onClick={() => setConfirmOpen(false)}
-          />
+          <div className="absolute inset-0 bg-black/40" onClick={() => setConfirmOpen(false)} />
 
           <div className="relative z-10 w-full max-w-md rounded-2xl bg-white p-6 dark:bg-slate-900">
             <button
@@ -299,10 +280,7 @@ export default function Booking() {
             </div>
 
             <div className="mt-6 flex justify-end gap-3">
-              <button
-                onClick={() => setConfirmOpen(false)}
-                className="rounded-xl border px-4 py-2"
-              >
+              <button onClick={() => setConfirmOpen(false)} className="rounded-xl border px-4 py-2">
                 Cancel
               </button>
 

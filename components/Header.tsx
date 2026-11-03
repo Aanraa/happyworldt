@@ -1,15 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import {
-  Menu,
-  X,
-  Sun,
-  Moon,
-  UserRound,
-  LayoutDashboard,
-  ArrowUpRight,
-} from 'lucide-react';
+import { Menu, X, Sun, Moon, UserRound, LayoutDashboard, ArrowUpRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { useTheme } from './ThemeProvider';
@@ -71,11 +63,7 @@ export default function Header() {
           {/* =====================================================
               LOGO
           ====================================================== */}
-          <Link
-            href="/"
-            onClick={closeMobile}
-            className="group flex items-center"
-          >
+          <Link href="/" onClick={closeMobile} className="group flex items-center">
             <div className="leading-none">
               <div className="flex items-baseline">
                 <span className="text-[17px] font-extrabold tracking-[-0.055em] text-slate-950 dark:text-white sm:text-[18px]">
@@ -141,7 +129,7 @@ export default function Header() {
 
                   <ArrowUpRight
                     size={12}
-                    className="opacity-40 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    className="opacity-40 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                   />
                 </Link>
               )}
@@ -208,9 +196,7 @@ export default function Header() {
         ====================================================== */}
         <div
           className={`overflow-hidden border-t border-slate-200/80 bg-white transition-all duration-300 dark:border-slate-800/80 dark:bg-slate-950 lg:hidden ${
-            open
-              ? 'max-h-[520px] opacity-100'
-              : 'max-h-0 border-transparent opacity-0'
+            open ? 'max-h-[520px] opacity-100' : 'max-h-0 border-transparent opacity-0'
           }`}
         >
           <div className="mx-auto max-w-7xl px-5 py-4 sm:px-8">
@@ -232,9 +218,7 @@ export default function Header() {
                     <div className="flex items-center gap-3">
                       <span
                         className={`text-[10px] font-bold ${
-                          active
-                            ? 'text-[#b77b3b]'
-                            : 'text-slate-300 dark:text-slate-600'
+                          active ? 'text-[#b77b3b]' : 'text-slate-300 dark:text-slate-600'
                         }`}
                       >
                         0{index + 1}

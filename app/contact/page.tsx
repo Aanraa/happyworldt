@@ -1,13 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import {
-  addDoc,
-  collection,
-  doc,
-  getDoc,
-  serverTimestamp,
-} from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc, serverTimestamp } from 'firebase/firestore';
 import { Clock3, Mail, MapPin, Phone } from 'lucide-react';
 import { db } from '@/lib/firebase';
 
@@ -61,10 +55,8 @@ export default function Contact() {
             linear-gradient(to bottom, rgba(15,23,42,0.045) 1px, transparent 1px)
           `,
           backgroundSize: '64px 64px',
-          maskImage:
-            'linear-gradient(to bottom, black 0%, black 70%, transparent 100%)',
-          WebkitMaskImage:
-            'linear-gradient(to bottom, black 0%, black 70%, transparent 100%)',
+          maskImage: 'linear-gradient(to bottom, black 0%, black 70%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 70%, transparent 100%)',
         }}
       />
 
@@ -81,8 +73,8 @@ export default function Contact() {
           </h1>
 
           <p className="mx-auto mt-5 max-w-2xl text-[15px] leading-7 text-slate-500 dark:text-slate-400 sm:text-base">
-            Асуулт, санал, эсвэл аяллын хүсэлтээ бидэнд илгээнэ үү. Таны аяллын
-            төлөвлөгөөг хамтдаа бодит болгоход бид үргэлж туслахад бэлэн.
+            Асуулт, санал, эсвэл аяллын хүсэлтээ бидэнд илгээнэ үү. Таны аяллын төлөвлөгөөг хамтдаа
+            бодит болгоход бид үргэлж туслахад бэлэн.
           </p>
         </section>
 
@@ -98,8 +90,7 @@ export default function Contact() {
                 </h2>
 
                 <p className="mt-2 text-sm leading-6 text-slate-500 dark:text-slate-400">
-                  Танд хэрэгтэй мэдээллээ үлдээгээрэй. Бид тантай удахгүй
-                  холбогдох болно.
+                  Танд хэрэгтэй мэдээллээ үлдээгээрэй. Бид тантай удахгүй холбогдох болно.
                 </p>
               </div>
 
@@ -116,30 +107,7 @@ export default function Contact() {
                       placeholder="Таны нэр"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="
-                        h-11
-                        w-full
-                        rounded-lg
-                        border
-                        border-slate-200
-                        bg-white
-                        px-4
-                        text-sm
-                        text-slate-900
-                        outline-none
-                        transition
-                        placeholder:text-slate-400
-                        hover:border-slate-300
-                        focus:border-slate-900
-                        focus:ring-2
-                        focus:ring-slate-900/5
-                        dark:border-slate-700
-                        dark:bg-slate-900
-                        dark:text-white
-                        dark:placeholder:text-slate-500
-                        dark:hover:border-slate-600
-                        dark:focus:border-slate-400
-                      "
+                      className="h-11 w-full rounded-lg border border-slate-200 bg-white px-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-slate-900 focus:ring-2 focus:ring-slate-900/5 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:placeholder:text-slate-500 dark:hover:border-slate-600 dark:focus:border-slate-400"
                     />
                   </div>
 
@@ -153,30 +121,7 @@ export default function Contact() {
                       placeholder="you@example.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="
-                        h-11
-                        w-full
-                        rounded-lg
-                        border
-                        border-slate-200
-                        bg-white
-                        px-4
-                        text-sm
-                        text-slate-900
-                        outline-none
-                        transition
-                        placeholder:text-slate-400
-                        hover:border-slate-300
-                        focus:border-slate-900
-                        focus:ring-2
-                        focus:ring-slate-900/5
-                        dark:border-slate-700
-                        dark:bg-slate-900
-                        dark:text-white
-                        dark:placeholder:text-slate-500
-                        dark:hover:border-slate-600
-                        dark:focus:border-slate-400
-                      "
+                      className="h-11 w-full rounded-lg border border-slate-200 bg-white px-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-slate-900 focus:ring-2 focus:ring-slate-900/5 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:placeholder:text-slate-500 dark:hover:border-slate-600 dark:focus:border-slate-400"
                     />
                   </div>
                 </div>
@@ -192,30 +137,7 @@ export default function Contact() {
                     placeholder="Утасны дугаар"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="
-                      h-11
-                      w-full
-                      rounded-lg
-                      border
-                      border-slate-200
-                      bg-white
-                      px-4
-                      text-sm
-                      text-slate-900
-                      outline-none
-                      transition
-                      placeholder:text-slate-400
-                      hover:border-slate-300
-                      focus:border-slate-900
-                      focus:ring-2
-                      focus:ring-slate-900/5
-                      dark:border-slate-700
-                      dark:bg-slate-900
-                      dark:text-white
-                      dark:placeholder:text-slate-500
-                      dark:hover:border-slate-600
-                      dark:focus:border-slate-400
-                    "
+                    className="h-11 w-full rounded-lg border border-slate-200 bg-white px-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-slate-900 focus:ring-2 focus:ring-slate-900/5 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:placeholder:text-slate-500 dark:hover:border-slate-600 dark:focus:border-slate-400"
                   />
                 </div>
 
@@ -229,33 +151,7 @@ export default function Contact() {
                     placeholder="Та юуны талаар асуухыг хүсэж байна вэ?"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    className="
-                      min-h-[180px]
-                      w-full
-                      resize-none
-                      rounded-lg
-                      border
-                      border-slate-200
-                      bg-white
-                      px-4
-                      py-3.5
-                      text-sm
-                      leading-6
-                      text-slate-900
-                      outline-none
-                      transition
-                      placeholder:text-slate-400
-                      hover:border-slate-300
-                      focus:border-slate-900
-                      focus:ring-2
-                      focus:ring-slate-900/5
-                      dark:border-slate-700
-                      dark:bg-slate-900
-                      dark:text-white
-                      dark:placeholder:text-slate-500
-                      dark:hover:border-slate-600
-                      dark:focus:border-slate-400
-                    "
+                    className="min-h-[180px] w-full resize-none rounded-lg border border-slate-200 bg-white px-4 py-3.5 text-sm leading-6 text-slate-900 outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-slate-900 focus:ring-2 focus:ring-slate-900/5 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:placeholder:text-slate-500 dark:hover:border-slate-600 dark:focus:border-slate-400"
                   />
                 </div>
 
@@ -264,25 +160,7 @@ export default function Contact() {
                   <button
                     type="button"
                     onClick={send}
-                    className="
-                      inline-flex
-                      h-11
-                      w-full
-                      items-center
-                      justify-center
-                      rounded-lg
-                      bg-slate-950
-                      px-6
-                      text-sm
-                      font-semibold
-                      text-white
-                      shadow-sm
-                      transition
-                      hover:bg-slate-800
-                      active:scale-[0.99]
-                      sm:w-auto
-                      sm:min-w-[180px]
-                    "
+                    className="inline-flex h-11 w-full items-center justify-center rounded-lg bg-slate-950 px-6 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 active:scale-[0.99] sm:w-auto sm:min-w-[180px]"
                   >
                     Илгээх
                   </button>
@@ -303,13 +181,10 @@ export default function Contact() {
             ====================== */}
             <aside className="lg:border-l lg:border-slate-200 lg:pl-12">
               <div className="mb-8">
-                <h2 className="text-xl font-bold tracking-tight text-slate-950">
-                  Манай мэдээлэл
-                </h2>
+                <h2 className="text-xl font-bold tracking-tight text-slate-950">Манай мэдээлэл</h2>
 
                 <p className="mt-2 text-sm leading-6 text-slate-500">
-                  Аялалтай холбоотой мэдээлэл авах бол бидэнтэй шууд
-                  холбогдоорой.
+                  Аялалтай холбоотой мэдээлэл авах бол бидэнтэй шууд холбогдоорой.
                 </p>
               </div>
 
@@ -446,8 +321,8 @@ export default function Contact() {
               {/* Bottom divider / small note */}
               <div className="mt-12 border-t border-slate-200 pt-6">
                 <p className="text-xs leading-5 text-slate-400">
-                  Аяллын талаар нэмэлт мэдээлэл авах шаардлагатай бол бидэнтэй
-                  хүссэн үедээ холбогдоорой.
+                  Аяллын талаар нэмэлт мэдээлэл авах шаардлагатай бол бидэнтэй хүссэн үедээ
+                  холбогдоорой.
                 </p>
               </div>
             </aside>

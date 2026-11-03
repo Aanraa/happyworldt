@@ -1,2 +1,25 @@
-export type ItineraryDay={day:number;title:string;detail:string};
-export type Tour={id?:string;name:string;slug:string;region:string;category:string;image:string;gallery:string[];durationDays:number;startingPrice:number;discountPrice:number;currency:'MNT'|'USD';summary:string;hotel:string;flight:string;itinerary:ItineraryDay[];included:string[];excluded:string[];departureDates:string[];active:boolean;featured:boolean;createdAt?:unknown;updatedAt?:unknown};
+export type ItineraryDay = { day: number; title: string; detail: string };
+export type Tour = {
+  id?: string;
+  name: string;
+  slug: string;
+  region: string;
+  category: string;
+  image: string;
+  gallery: string[];
+  durationDays: number;
+  startingPrice: number;
+  discountPrice: number;
+  currency: 'MNT' | 'USD';
+  summary: string;
+  hotel: string;
+  flight: string;
+  itinerary: ItineraryDay[];
+  included: string[];
+  excluded: string[];
+  departureDates: string[];
+  active: boolean;
+  featured: boolean;
+  createdAt?: unknown;
+  updatedAt?: unknown;
+};

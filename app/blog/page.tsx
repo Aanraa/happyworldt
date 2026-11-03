@@ -77,10 +77,8 @@ export default function Blog() {
         style={{
           backgroundImage: ` linear-gradient( to right, rgba(15,23,42,0.04) 1px, transparent 1px ), linear-gradient( to bottom, rgba(15,23,42,0.04) 1px, transparent 1px ) `,
           backgroundSize: '64px 64px',
-          maskImage:
-            'linear-gradient(to bottom, black 0%, black 48%, transparent 100%)',
-          WebkitMaskImage:
-            'linear-gradient(to bottom, black 0%, black 48%, transparent 100%)',
+          maskImage: 'linear-gradient(to bottom, black 0%, black 48%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 48%, transparent 100%)',
         }}
       />
       <div className="pointer-events-none absolute left-1/2 top-20 h-[360px] w-[650px] -translate-x-1/2 rounded-full bg-slate-100/70 blur-3xl dark:bg-slate-900/60" />
@@ -93,8 +91,7 @@ export default function Blog() {
             Нийтлэлүүд
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-[15px] leading-7 text-slate-500 dark:text-slate-400 sm:text-base">
-            Аяллын санаа, зөвлөгөө болон сонирхолтой түүхүүдийг бидэнтэй хамт
-            олж мэдээрэй.
+            Аяллын санаа, зөвлөгөө болон сонирхолтой түүхүүдийг бидэнтэй хамт олж мэдээрэй.
           </p>
         </section>
         {/* ===================================================== LOADING ====================================================== */}{' '}
@@ -120,8 +117,7 @@ export default function Blog() {
                 Одоогоор нийтлэл байхгүй байна.
               </h2>
               <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-slate-500 dark:text-slate-400">
-                Удахгүй аяллын шинэ түүх, зөвлөгөө болон сонирхолтой нийтлэлүүд
-                нэмэгдэнэ.
+                Удахгүй аяллын шинэ түүх, зөвлөгөө болон сонирхолтой нийтлэлүүд нэмэгдэнэ.
               </p>
             </div>
           </section>
@@ -132,10 +128,7 @@ export default function Blog() {
             <div className="grid gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:gap-14">
               {' '}
               {/* Image */}{' '}
-              <Link
-                href={`/blog/${featured.slug || featured.id}`}
-                className="group block"
-              >
+              <Link href={`/blog/${featured.slug || featured.id}`} className="group block">
                 {' '}
                 <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-slate-100">
                   {' '}
@@ -156,10 +149,7 @@ export default function Blog() {
                 <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-slate-400 dark:text-slate-500">
                   Онцлох нийтлэл
                 </p>
-                <Link
-                  href={`/blog/${featured.slug || featured.id}`}
-                  className="group"
-                >
+                <Link href={`/blog/${featured.slug || featured.id}`} className="group">
                   <h2 className="mt-4 text-3xl font-bold leading-tight tracking-[-0.035em] text-slate-950 transition group-hover:text-slate-600 dark:text-white dark:group-hover:text-slate-300 sm:text-4xl">
                     {featured.title}
                   </h2>
@@ -173,14 +163,12 @@ export default function Blog() {
                   {' '}
                   <span className="inline-flex items-center gap-1.5">
                     {' '}
-                    <CalendarDays size={14} />{' '}
-                    {formatDate(featured.createdAt)}{' '}
+                    <CalendarDays size={14} /> {formatDate(featured.createdAt)}{' '}
                   </span>{' '}
                   <span className="h-1 w-1 rounded-full bg-slate-300" />{' '}
                   <span className="inline-flex items-center gap-1.5">
                     {' '}
-                    <Clock3 size={14} /> {readingTime(featured.content)}{' '}
-                    мин{' '}
+                    <Clock3 size={14} /> {readingTime(featured.content)} мин{' '}
                   </span>{' '}
                 </div>{' '}
                 <Link
@@ -258,7 +246,7 @@ export default function Blog() {
           </section>
         )}{' '}
         <section className="mx-auto mt-20 max-w-5xl border-t border-slate-200 pt-10 sm:mt-24 sm:pt-12">
-          <div className="relative overflow-hidden rounded-2xl bg-[#f7f5f1] px-6 py-12 sm:px-10 sm:py-14 lg:px-14 dark:bg-slate-900">
+          <div className="relative overflow-hidden rounded-2xl bg-[#f7f5f1] px-6 py-12 dark:bg-slate-900 sm:px-10 sm:py-14 lg:px-14">
             <div className="relative z-10 max-w-2xl">
               <h2 className="mt-4 text-3xl font-bold tracking-[-0.04em] text-slate-950 dark:text-white">
                 Дараагийн аялал хаашаа вэ?{' '}
@@ -279,7 +267,7 @@ export default function Blog() {
             <div className="pointer-events-none absolute -right-8 -top-8 h-40 w-40 rounded-full border border-slate-300/50" />{' '}
           </div>{' '}
         </section>
-        <section className="mx-auto mt-16 max-w-5xl border-t border-slate-200 pt-10 pb-8 sm:mt-20 sm:pt-12">
+        <section className="mx-auto mt-16 max-w-5xl border-t border-slate-200 pb-8 pt-10 sm:mt-20 sm:pt-12">
           {' '}
           <div className="grid gap-6 sm:grid-cols-[0.65fr_1.35fr] sm:gap-10">
             <div>
@@ -292,9 +280,8 @@ export default function Blog() {
             </div>
             <div>
               <p className="text-sm leading-7 text-slate-500 dark:text-slate-400 sm:text-base">
-                Аяллын санаа, зөвлөгөө болон сонирхолтой түүхүүдийг бидэнтэй
-                хамт олж мэдээрэй. Таны дараагийн аялалд хэрэг болох мэдээллийг
-                нэг дороос хүргэхийг зорьдог.
+                Аяллын санаа, зөвлөгөө болон сонирхолтой түүхүүдийг бидэнтэй хамт олж мэдээрэй. Таны
+                дараагийн аялалд хэрэг болох мэдээллийг нэг дороос хүргэхийг зорьдог.
               </p>
               <Link
                 href="/tours"

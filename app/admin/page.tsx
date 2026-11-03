@@ -1,13 +1,6 @@
 'use client';
 import Link from 'next/link';
-import {
-  ArrowRight,
-  ClipboardList,
-  FileText,
-  MessageSquare,
-  Plane,
-  Settings,
-} from 'lucide-react';
+import { ArrowRight, ClipboardList, FileText, MessageSquare, Plane, Settings } from 'lucide-react';
 const cards = [
   {
     title: 'Аяллууд',
@@ -70,8 +63,8 @@ export default function Admin() {
               </h2>{' '}
               <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-500 dark:text-slate-400">
                 {' '}
-                Happy World Tour вэбсайтын бүх мэдээлэл, аялал, захиалга болон
-                хэрэглэгчдийн мессежийг эндээс удирдана.{' '}
+                Happy World Tour вэбсайтын бүх мэдээлэл, аялал, захиалга болон хэрэглэгчдийн
+                мессежийг эндээс удирдана.{' '}
               </p>{' '}
             </div>{' '}
             <div className="hidden shrink-0 sm:block">
@@ -105,7 +98,7 @@ export default function Admin() {
             <Link
               key={card.href}
               href={card.href}
-              className=" group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 "
+              className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700"
             >
               {' '}
               {/* Top */}{' '}
@@ -170,7 +163,7 @@ export default function Admin() {
           {' '}
           <Link
             href="/admin/bookings"
-            className=" group flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-4 shadow-sm transition hover:border-slate-300 hover:shadow-md dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 "
+            className="group flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-4 shadow-sm transition hover:border-slate-300 hover:shadow-md dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700"
           >
             {' '}
             <div className="flex items-center gap-3">
@@ -185,17 +178,14 @@ export default function Admin() {
                   {' '}
                   Захиалга шалгах{' '}
                 </p>{' '}
-                <p className="mt-0.5 text-xs text-slate-400">
-                  {' '}
-                  Сүүлийн захиалгууд{' '}
-                </p>{' '}
+                <p className="mt-0.5 text-xs text-slate-400"> Сүүлийн захиалгууд </p>{' '}
               </div>{' '}
             </div>{' '}
             <ArrowRight className="h-4 w-4 text-slate-400 transition-transform group-hover:translate-x-1" />{' '}
           </Link>{' '}
           <Link
             href="/admin/messages"
-            className=" group flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-4 shadow-sm transition hover:border-slate-300 hover:shadow-md dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 "
+            className="group flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-4 shadow-sm transition hover:border-slate-300 hover:shadow-md dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700"
           >
             {' '}
             <div className="flex items-center gap-3">
@@ -210,17 +200,14 @@ export default function Admin() {
                   {' '}
                   Мессеж шалгах{' '}
                 </p>{' '}
-                <p className="mt-0.5 text-xs text-slate-400">
-                  {' '}
-                  Хэрэглэгчдийн мессеж{' '}
-                </p>{' '}
+                <p className="mt-0.5 text-xs text-slate-400"> Хэрэглэгчдийн мессеж </p>{' '}
               </div>{' '}
             </div>{' '}
             <ArrowRight className="h-4 w-4 text-slate-400 transition-transform group-hover:translate-x-1" />{' '}
           </Link>{' '}
           <Link
             href="/admin/articles"
-            className=" group flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-4 shadow-sm transition hover:border-slate-300 hover:shadow-md dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 "
+            className="group flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-4 shadow-sm transition hover:border-slate-300 hover:shadow-md dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700"
           >
             {' '}
             <div className="flex items-center gap-3">
@@ -235,10 +222,7 @@ export default function Admin() {
                   {' '}
                   Блог нэмэх{' '}
                 </p>{' '}
-                <p className="mt-0.5 text-xs text-slate-400">
-                  {' '}
-                  Шинэ нийтлэл үүсгэх{' '}
-                </p>{' '}
+                <p className="mt-0.5 text-xs text-slate-400"> Шинэ нийтлэл үүсгэх </p>{' '}
               </div>{' '}
             </div>{' '}
             <ArrowRight className="h-4 w-4 text-slate-400 transition-transform group-hover:translate-x-1" />{' '}

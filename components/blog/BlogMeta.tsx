@@ -11,11 +11,7 @@ function getDate(value: any) {
   const date = new Date(value);
   return Number.isNaN(date.getTime()) ? null : date;
 }
-export default function BlogMeta({
-  createdAt,
-  content = '',
-  compact = false,
-}: BlogMetaProps) {
+export default function BlogMeta({ createdAt, content = '', compact = false }: BlogMetaProps) {
   const date = getDate(createdAt);
   const words = content.trim().split(/\s+/).filter(Boolean).length;
   const readingTime = Math.max(1, Math.ceil(words / 200));

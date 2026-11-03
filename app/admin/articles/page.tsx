@@ -10,16 +10,7 @@ import {
   serverTimestamp,
   updateDoc,
 } from 'firebase/firestore';
-import {
-  Check,
-  FileText,
-  Image as ImageIcon,
-  Pencil,
-  Plus,
-  Save,
-  Trash2,
-  X,
-} from 'lucide-react';
+import { Check, FileText, Image as ImageIcon, Pencil, Plus, Save, Trash2, X } from 'lucide-react';
 import { db } from '@/lib/firebase';
 
 const blank: any = {
@@ -59,13 +50,7 @@ const textareaClass = `
   dark:focus:ring-white/5
 `;
 
-function Label({
-  children,
-  required = false,
-}: {
-  children: React.ReactNode;
-  required?: boolean;
-}) {
+function Label({ children, required = false }: { children: React.ReactNode; required?: boolean }) {
   return (
     <label className="mb-2 block text-xs font-semibold text-slate-700 dark:text-slate-300">
       {children}
@@ -150,8 +135,7 @@ export default function Articles() {
               Блог удирдах
             </h1>
             <p className="mt-1.5 text-sm leading-6 text-slate-500 dark:text-slate-400">
-              Аялал, зөвлөгөө болон сонирхолтой мэдээллүүдээ эндээс нийтэлж,
-              засварлана уу.
+              Аялал, зөвлөгөө болон сонирхолтой мэдээллүүдээ эндээс нийтэлж, засварлана уу.
             </p>
           </div>
         </div>
@@ -212,9 +196,7 @@ export default function Articles() {
                 value={f.slug}
                 onChange={(e) => setF({ ...f, slug: e.target.value })}
               />
-              <p className="mt-1.5 text-[11px] text-slate-400">
-                Вэб хуудасны холбоосын нэр.
-              </p>
+              <p className="mt-1.5 text-[11px] text-slate-400">Вэб хуудасны холбоосын нэр.</p>
             </div>
 
             <div>
@@ -258,9 +240,7 @@ export default function Articles() {
                   <div className="grid h-32 place-items-center rounded-lg border border-dashed border-slate-300 bg-slate-50 dark:border-slate-700 dark:bg-slate-950">
                     <div className="text-center">
                       <ImageIcon className="mx-auto h-5 w-5 text-slate-400" />
-                      <p className="mt-2 text-[11px] text-slate-400">
-                        Зураг харагдана
-                      </p>
+                      <p className="mt-2 text-[11px] text-slate-400">Зураг харагдана</p>
                     </div>
                   </div>
                 )}
@@ -276,8 +256,7 @@ export default function Articles() {
                 onChange={(e) => setF({ ...f, content: e.target.value })}
               />
               <p className="mt-1.5 text-[11px] text-slate-400">
-                Одоогийн системийн бүтэцтэй нийцүүлэн энгийн текст хэлбэрээр
-                хадгална.
+                Одоогийн системийн бүтэцтэй нийцүүлэн энгийн текст хэлбэрээр хадгална.
               </p>
             </div>
 
@@ -353,9 +332,7 @@ export default function Articles() {
               <p className="mt-3 text-sm font-semibold text-slate-700 dark:text-slate-300">
                 Одоогоор блог бүртгэгдээгүй байна.
               </p>
-              <p className="mt-1 text-xs text-slate-400">
-                Дээрх хэсгээс шинэ блог үүсгэнэ үү.
-              </p>
+              <p className="mt-1 text-xs text-slate-400">Дээрх хэсгээс шинэ блог үүсгэнэ үү.</p>
             </div>
           )}
 
@@ -364,7 +341,7 @@ export default function Articles() {
               key={a.id}
               className="group flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:border-slate-300 hover:shadow-md dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 sm:flex-row sm:items-center"
             >
-              <div className="h-24 w-full shrink-0 overflow-hidden rounded-xl bg-slate-100 sm:w-32 dark:bg-slate-800">
+              <div className="h-24 w-full shrink-0 overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-800 sm:w-32">
                 {a.coverImage ? (
                   <img
                     src={a.coverImage}

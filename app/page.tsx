@@ -47,22 +47,19 @@ const benefits = [
     icon: ShieldCheck,
     number: '01',
     title: 'Найдвартай үйлчилгээ',
-    description:
-      'Аяллын мэдээлэл, захиалга болон зөвлөгөөг нэг дороос ойлгомжтой аваарай.',
+    description: 'Аяллын мэдээлэл, захиалга болон зөвлөгөөг нэг дороос ойлгомжтой аваарай.',
   },
   {
     icon: Compass,
     number: '02',
     title: 'Зөв сонголт',
-    description:
-      'Таны цаг, төсөв, сонирхолд тохирсон аяллыг хамтдаа сонгоход тусална.',
+    description: 'Таны цаг, төсөв, сонирхолд тохирсон аяллыг хамтдаа сонгоход тусална.',
   },
   {
     icon: HeartHandshake,
     number: '03',
     title: 'Хүн төвтэй дэмжлэг',
-    description:
-      'Аяллын өмнө болон аяллын үеэр танд хэрэгтэй мэдээллээр дэмжин ажиллана.',
+    description: 'Аяллын өмнө болон аяллын үеэр танд хэрэгтэй мэдээллээр дэмжин ажиллана.',
   },
 ];
 
@@ -102,10 +99,8 @@ export default function Home() {
               linear-gradient(to bottom, rgba(15,23,42,0.035) 1px, transparent 1px)
             `,
             backgroundSize: '72px 72px',
-            maskImage:
-              'linear-gradient(to bottom, black 0%, black 55%, transparent 100%)',
-            WebkitMaskImage:
-              'linear-gradient(to bottom, black 0%, black 55%, transparent 100%)',
+            maskImage: 'linear-gradient(to bottom, black 0%, black 55%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 55%, transparent 100%)',
           }}
         />
 
@@ -131,8 +126,8 @@ export default function Home() {
               </h1>
 
               <p className="mt-7 max-w-lg text-[15px] leading-8 text-slate-500 dark:text-slate-400 sm:text-base">
-                Танд тохирсон аяллаа сонгож, аяллын өмнөх бэлтгэлээс эхлээд
-                аяллын турш найдвартай хамт байна.
+                Танд тохирсон аяллаа сонгож, аяллын өмнөх бэлтгэлээс эхлээд аяллын турш найдвартай
+                хамт байна.
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -216,9 +211,7 @@ export default function Home() {
 
                   <div>
                     <p className="text-sm font-bold">4.5 / 5.0</p>
-                    <p className="mt-0.5 text-[11px] text-slate-400">
-                      Аялагчдын үнэлгээ
-                    </p>
+                    <p className="mt-0.5 text-[11px] text-slate-400">Аялагчдын үнэлгээ</p>
                   </div>
                 </div>
               </div>
@@ -232,20 +225,15 @@ export default function Home() {
       ====================================================== */}
       <section className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8">
         <div className="-mt-1 border-b border-slate-200 py-8 dark:border-slate-800">
-          <div className="grid divide-y divide-slate-200 sm:grid-cols-4 sm:divide-x sm:divide-y-0 dark:divide-slate-800">
+          <div className="grid divide-y divide-slate-200 dark:divide-slate-800 sm:grid-cols-4 sm:divide-x sm:divide-y-0">
             {[
               ['3,865+', 'Аз жаргалтай аялагч'],
               ['16', 'Аяллын чиглэл'],
               ['3+', 'Жилийн туршлага'],
               ['4.5', 'Дундаж үнэлгээ'],
             ].map(([number, label]) => (
-              <div
-                key={label}
-                className="flex items-center justify-center gap-4 px-5 py-5 sm:py-2"
-              >
-                <p className="text-2xl font-bold tracking-tight sm:text-3xl">
-                  {number}
-                </p>
+              <div key={label} className="flex items-center justify-center gap-4 px-5 py-5 sm:py-2">
+                <p className="text-2xl font-bold tracking-tight sm:text-3xl">{number}</p>
 
                 <p className="max-w-[100px] text-[11px] font-medium uppercase leading-5 tracking-[0.08em] text-slate-400">
                   {label}
@@ -271,8 +259,7 @@ export default function Home() {
             </h2>
 
             <p className="mt-3 max-w-xl text-sm leading-7 text-slate-500 dark:text-slate-400">
-              Амралт, адал явдал, гэр бүл, найз нөхөд гээд таны аяллын зорилгод
-              тохирох чиглэлүүд.
+              Амралт, адал явдал, гэр бүл, найз нөхөд гээд таны аяллын зорилгод тохирох чиглэлүүд.
             </p>
           </div>
 
@@ -321,10 +308,7 @@ export default function Home() {
 
                   <div className="mt-5 flex items-center gap-2 text-xs font-semibold text-white">
                     Дэлгэрэнгүй
-                    <ArrowRight
-                      size={14}
-                      className="transition group-hover:translate-x-1"
-                    />
+                    <ArrowRight size={14} className="transition group-hover:translate-x-1" />
                   </div>
                 </div>
               </div>
@@ -347,14 +331,12 @@ export default function Home() {
               <h2 className="mt-4 text-3xl font-bold tracking-[-0.04em] sm:text-4xl">
                 Аяллаа
                 <br />
-                <span className="text-slate-400 dark:text-slate-500">
-                  санаа зоволтгүй төлөвлө.
-                </span>
+                <span className="text-slate-400 dark:text-slate-500">санаа зоволтгүй төлөвлө.</span>
               </h2>
 
               <p className="mt-5 max-w-sm text-sm leading-7 text-slate-500 dark:text-slate-400">
-                Бид аяллын хамгийн чухал зүйлсийг энгийн болгож, таны цаг болон
-                сонголтыг хүндэтгэн ажилладаг.
+                Бид аяллын хамгийн чухал зүйлсийг энгийн болгож, таны цаг болон сонголтыг хүндэтгэн
+                ажилладаг.
               </p>
             </div>
 
@@ -367,9 +349,7 @@ export default function Home() {
                     key={benefit.number}
                     className="group grid gap-5 py-7 first:pt-0 last:pb-0 sm:grid-cols-[70px_45px_1fr]"
                   >
-                    <span className="text-xs font-semibold text-slate-400">
-                      {benefit.number}
-                    </span>
+                    <span className="text-xs font-semibold text-slate-400">{benefit.number}</span>
 
                     <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-[#a96f2d] transition group-hover:bg-[#a96f2d] group-hover:text-white dark:border-slate-700 dark:bg-slate-900">
                       <Icon size={17} />
@@ -462,10 +442,7 @@ export default function Home() {
 
                       <div className="mt-4 inline-flex items-center gap-2 text-xs font-semibold text-white">
                         Унших
-                        <ArrowRight
-                          size={13}
-                          className="transition group-hover:translate-x-1"
-                        />
+                        <ArrowRight size={13} className="transition group-hover:translate-x-1" />
                       </div>
                     </div>
                   </div>
@@ -510,8 +487,7 @@ export default function Home() {
               </h2>
 
               <p className="mt-4 max-w-xl text-sm leading-7 text-white/60">
-                Чиглэлээ хараахан сонгоогүй бол зүгээр. Танд тохирох аяллыг
-                хамтдаа олъё.
+                Чиглэлээ хараахан сонгоогүй бол зүгээр. Танд тохирох аяллыг хамтдаа олъё.
               </p>
             </div>
 

@@ -278,11 +278,7 @@ export default function AdminTours() {
 
     const duration = Number(form.durationDays);
 
-    if (
-      form.durationDays === '' ||
-      form.durationDays === null ||
-      form.durationDays === undefined
-    ) {
+    if (form.durationDays === '' || form.durationDays === null || form.durationDays === undefined) {
       newErrors.durationDays = 'Аяллын хугацаа оруулна уу.';
     } else if (!Number.isInteger(duration) || duration < 1) {
       newErrors.durationDays = 'Аяллын хугацаа 1-ээс дээш бүхэл тоо байна.';
@@ -292,11 +288,7 @@ export default function AdminTours() {
 
     const groupCount = Number(form.groupCount);
 
-    if (
-      form.groupCount === '' ||
-      form.groupCount === null ||
-      form.groupCount === undefined
-    ) {
+    if (form.groupCount === '' || form.groupCount === null || form.groupCount === undefined) {
       newErrors.groupCount = 'Группийн тоо оруулна уу.';
     } else if (!Number.isInteger(groupCount) || groupCount < 1) {
       newErrors.groupCount = 'Группийн тоо 1-ээс дээш бүхэл тоо байна.';
@@ -328,11 +320,7 @@ export default function AdminTours() {
       newErrors.discountPrice = 'Хямдарсан үнэ 0-ээс бага байж болохгүй.';
     }
 
-    if (
-      discountPrice > 0 &&
-      startingPrice > 0 &&
-      discountPrice >= startingPrice
-    ) {
+    if (discountPrice > 0 && startingPrice > 0 && discountPrice >= startingPrice) {
       newErrors.discountPrice = 'Хямдарсан үнэ эхлэх үнээс бага байх ёстой.';
     }
 
@@ -395,8 +383,7 @@ export default function AdminTours() {
       const hasDetail = Boolean(day.detail?.trim());
 
       if (!hasTitle && hasDetail) {
-        newErrors[`itinerary.${index}.title`] =
-          `${index + 1}-р өдрийн гарчиг оруулна уу.`;
+        newErrors[`itinerary.${index}.title`] = `${index + 1}-р өдрийн гарчиг оруулна уу.`;
       }
 
       if (hasTitle && !hasDetail) {
@@ -405,8 +392,7 @@ export default function AdminTours() {
       }
 
       if (day.title?.trim().length > 150) {
-        newErrors[`itinerary.${index}.title`] =
-          'Өдрийн гарчиг хамгийн ихдээ 150 тэмдэгт байна.';
+        newErrors[`itinerary.${index}.title`] = 'Өдрийн гарчиг хамгийн ихдээ 150 тэмдэгт байна.';
       }
 
       if (day.detail?.trim().length > 2000) {
@@ -423,8 +409,7 @@ export default function AdminTours() {
 
     included.forEach((item: string, index: number) => {
       if (item?.trim().length > 200) {
-        newErrors[`included.${index}`] =
-          'Энэ мэдээлэл хамгийн ихдээ 200 тэмдэгт байна.';
+        newErrors[`included.${index}`] = 'Энэ мэдээлэл хамгийн ихдээ 200 тэмдэгт байна.';
       }
     });
 
@@ -436,8 +421,7 @@ export default function AdminTours() {
 
     excluded.forEach((item: string, index: number) => {
       if (item?.trim().length > 200) {
-        newErrors[`excluded.${index}`] =
-          'Энэ мэдээлэл хамгийн ихдээ 200 тэмдэгт байна.';
+        newErrors[`excluded.${index}`] = 'Энэ мэдээлэл хамгийн ихдээ 200 тэмдэгт байна.';
       }
     });
 
@@ -451,8 +435,7 @@ export default function AdminTours() {
       if (!date) {
         newErrors[`departureDates.${index}`] = 'Явах огноог сонгоно уу.';
       } else if (isPastDate(date)) {
-        newErrors[`departureDates.${index}`] =
-          'Өнгөрсөн огноо сонгох боломжгүй.';
+        newErrors[`departureDates.${index}`] = 'Өнгөрсөн огноо сонгох боломжгүй.';
       }
     });
 
@@ -469,8 +452,7 @@ export default function AdminTours() {
     if (duplicateDates.length > 0) {
       departureDates.forEach((date: string, index: number) => {
         if (duplicateDates.includes(date)) {
-          newErrors[`departureDates.${index}`] =
-            'Ижил огноог давхар оруулах боломжгүй.';
+          newErrors[`departureDates.${index}`] = 'Ижил огноог давхар оруулах боломжгүй.';
         }
       });
     }
@@ -500,10 +482,7 @@ export default function AdminTours() {
         }
 
         if (file.size > 10 * 1024 * 1024) {
-          showToast(
-            'error',
-            `${file.name} 10MB-аас бага хэмжээтэй байх ёстой.`,
-          );
+          showToast('error', `${file.name} 10MB-аас бага хэмжээтэй байх ёстой.`);
 
           continue;
         }
@@ -693,11 +672,7 @@ export default function AdminTours() {
    * ========================================
    */
 
-  function updateArrayItem(
-    field: 'included' | 'excluded',
-    index: number,
-    value: string,
-  ) {
+  function updateArrayItem(field: 'included' | 'excluded', index: number, value: string) {
     const array = [...(form[field] || [])];
 
     array[index] = value;
@@ -758,9 +733,7 @@ export default function AdminTours() {
   }
 
   function removeDepartureDate(index: number) {
-    const dates = (form.departureDates || []).filter(
-      (_: any, i: number) => i !== index,
-    );
+    const dates = (form.departureDates || []).filter((_: any, i: number) => i !== index);
 
     setForm((prev: any) => ({
       ...prev,
@@ -798,9 +771,7 @@ export default function AdminTours() {
       const firstError = Object.keys(validationErrors)[0];
 
       setTimeout(() => {
-        const element = document.querySelector(
-          `[data-error-field="${firstError}"]`,
-        );
+        const element = document.querySelector(`[data-error-field="${firstError}"]`);
 
         if (element) {
           element.scrollIntoView({
@@ -827,9 +798,7 @@ export default function AdminTours() {
 
         country: form.country.trim(),
 
-        category:
-          form.category ||
-          (form.country === 'Mongolia' ? 'domestic' : 'international'),
+        category: form.category || (form.country === 'Mongolia' ? 'domestic' : 'international'),
 
         durationDays: Number(form.durationDays),
 
@@ -855,13 +824,9 @@ export default function AdminTours() {
             detail: item.detail?.trim() || '',
           })),
 
-        included: (form.included || [])
-          .map((item: string) => item.trim())
-          .filter(Boolean),
+        included: (form.included || []).map((item: string) => item.trim()).filter(Boolean),
 
-        excluded: (form.excluded || [])
-          .map((item: string) => item.trim())
-          .filter(Boolean),
+        excluded: (form.excluded || []).map((item: string) => item.trim()).filter(Boolean),
 
         departureDates: (form.departureDates || []).filter(Boolean).sort(),
 
@@ -909,9 +874,7 @@ export default function AdminTours() {
 
       showToast(
         'error',
-        editing
-          ? 'Аяллыг шинэчлэх үед алдаа гарлаа.'
-          : 'Аялал үүсгэх үед алдаа гарлаа.',
+        editing ? 'Аяллыг шинэчлэх үед алдаа гарлаа.' : 'Аялал үүсгэх үед алдаа гарлаа.',
       );
     } finally {
       setSaving(false);
@@ -975,11 +938,9 @@ export default function AdminTours() {
             },
           ],
 
-      included:
-        Array.isArray(t.included) && t.included.length ? t.included : [''],
+      included: Array.isArray(t.included) && t.included.length ? t.included : [''],
 
-      excluded:
-        Array.isArray(t.excluded) && t.excluded.length ? t.excluded : [''],
+      excluded: Array.isArray(t.excluded) && t.excluded.length ? t.excluded : [''],
 
       departureDates: Array.isArray(t.departureDates) ? t.departureDates : [],
     });
@@ -1112,8 +1073,7 @@ export default function AdminTours() {
             </h1>
 
             <p className="mt-1.5 max-w-2xl text-sm leading-6 text-slate-500 dark:text-slate-400">
-              Аяллын мэдээлэл, зураг, хөтөлбөр, үнэ болон гарах өдрүүдээ эндээс
-              удирдана уу.
+              Аяллын мэдээлэл, зураг, хөтөлбөр, үнэ болон гарах өдрүүдээ эндээс удирдана уу.
             </p>
           </div>
         </div>
@@ -1208,9 +1168,7 @@ export default function AdminTours() {
 
               <select
                 className={`${inputClass} ${
-                  hasError('country')
-                    ? 'border-red-400 focus:border-red-500'
-                    : ''
+                  hasError('country') ? 'border-red-400 focus:border-red-500' : ''
                 }`}
                 value={form.country}
                 onChange={(e) => {
@@ -1252,9 +1210,7 @@ export default function AdminTours() {
 
               <select
                 className={`${inputClass} ${
-                  hasError('category')
-                    ? 'border-red-400 focus:border-red-500'
-                    : ''
+                  hasError('category') ? 'border-red-400 focus:border-red-500' : ''
                 }`}
                 value={form.category}
                 onChange={(e) => set('category', e.target.value)}
@@ -1280,9 +1236,7 @@ export default function AdminTours() {
 
               <input
                 className={`${inputClass} ${
-                  hasError('durationDays')
-                    ? 'border-red-400 focus:border-red-500'
-                    : ''
+                  hasError('durationDays') ? 'border-red-400 focus:border-red-500' : ''
                 }`}
                 type="number"
                 min="1"
@@ -1318,9 +1272,7 @@ export default function AdminTours() {
 
               <input
                 className={`${inputClass} ${
-                  hasError('startingPrice')
-                    ? 'border-red-400 focus:border-red-500'
-                    : ''
+                  hasError('startingPrice') ? 'border-red-400 focus:border-red-500' : ''
                 }`}
                 type="number"
                 min="0"
@@ -1339,9 +1291,7 @@ export default function AdminTours() {
 
               <input
                 className={`${inputClass} ${
-                  hasError('discountPrice')
-                    ? 'border-red-400 focus:border-red-500'
-                    : ''
+                  hasError('discountPrice') ? 'border-red-400 focus:border-red-500' : ''
                 }`}
                 type="number"
                 min="0"
@@ -1383,9 +1333,7 @@ export default function AdminTours() {
 
               <input
                 className={`${inputClass} ${
-                  hasError('childrenPrice')
-                    ? 'border-red-400 focus:border-red-500'
-                    : ''
+                  hasError('childrenPrice') ? 'border-red-400 focus:border-red-500' : ''
                 }`}
                 type="number"
                 min="0"
@@ -1406,9 +1354,7 @@ export default function AdminTours() {
                 <Hotel className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
 
                 <input
-                  className={`${inputClass} pl-10 ${
-                    hasError('hotel') ? 'border-red-400' : ''
-                  }`}
+                  className={`${inputClass} pl-10 ${hasError('hotel') ? 'border-red-400' : ''}`}
                   placeholder="Зочид буудлын мэдээлэл"
                   value={form.hotel}
                   onChange={(e) => set('hotel', e.target.value)}
@@ -1427,9 +1373,7 @@ export default function AdminTours() {
                 <Plane className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
 
                 <input
-                  className={`${inputClass} pl-10 ${
-                    hasError('flight') ? 'border-red-400' : ''
-                  }`}
+                  className={`${inputClass} pl-10 ${hasError('flight') ? 'border-red-400' : ''}`}
                   placeholder="Нислэгийн мэдээлэл"
                   value={form.flight}
                   onChange={(e) => set('flight', e.target.value)}
@@ -1595,9 +1539,7 @@ export default function AdminTours() {
                     <button
                       type="button"
                       onClick={() => {
-                        const gallery = form.gallery.filter(
-                          (_: string, i: number) => i !== index,
-                        );
+                        const gallery = form.gallery.filter((_: string, i: number) => i !== index);
 
                         set('gallery', gallery);
 
@@ -1661,9 +1603,7 @@ export default function AdminTours() {
                       {index + 1}
                     </span>
 
-                    <span className="text-sm font-bold">
-                      {index + 1}-р өдөр
-                    </span>
+                    <span className="text-sm font-bold">{index + 1}-р өдөр</span>
                   </div>
 
                   {index > 0 && (
@@ -1686,15 +1626,11 @@ export default function AdminTours() {
 
                     <input
                       className={`${inputClass} ${
-                        hasError(`itinerary.${index}.title`)
-                          ? 'border-red-400'
-                          : ''
+                        hasError(`itinerary.${index}.title`) ? 'border-red-400' : ''
                       }`}
                       placeholder="Жишээ: Сөүл хотын аялал"
                       value={day.title}
-                      onChange={(e) =>
-                        updateDay(index, 'title', e.target.value)
-                      }
+                      onChange={(e) => updateDay(index, 'title', e.target.value)}
                     />
 
                     {fieldError(`itinerary.${index}.title`)}
@@ -1702,23 +1638,16 @@ export default function AdminTours() {
 
                   {/* DETAIL */}
 
-                  <div
-                    className="md:row-span-2"
-                    data-error-field={`itinerary.${index}.detail`}
-                  >
+                  <div className="md:row-span-2" data-error-field={`itinerary.${index}.detail`}>
                     <FieldLabel>Дэлгэрэнгүй хөтөлбөр</FieldLabel>
 
                     <textarea
                       className={`${textareaClass} min-h-[108px] ${
-                        hasError(`itinerary.${index}.detail`)
-                          ? 'border-red-400'
-                          : ''
+                        hasError(`itinerary.${index}.detail`) ? 'border-red-400' : ''
                       }`}
                       placeholder="Тухайн өдөр хийх аялал, үзэх газар, хоол гэх мэт..."
                       value={day.detail}
-                      onChange={(e) =>
-                        updateDay(index, 'detail', e.target.value)
-                      }
+                      onChange={(e) => updateDay(index, 'detail', e.target.value)}
                     />
 
                     {fieldError(`itinerary.${index}.detail`)}
@@ -1774,9 +1703,7 @@ export default function AdminTours() {
                         hasError(`included.${index}`) ? 'border-red-400' : ''
                       }`}
                       value={value}
-                      onChange={(e) =>
-                        updateArrayItem('included', index, e.target.value)
-                      }
+                      onChange={(e) => updateArrayItem('included', index, e.target.value)}
                       placeholder="Жишээ: Зочид буудал"
                     />
 
@@ -1815,9 +1742,7 @@ export default function AdminTours() {
                         hasError(`excluded.${index}`) ? 'border-red-400' : ''
                       }`}
                       value={value}
-                      onChange={(e) =>
-                        updateArrayItem('excluded', index, e.target.value)
-                      }
+                      onChange={(e) => updateArrayItem('excluded', index, e.target.value)}
                       placeholder="Жишээ: Хувийн зардал"
                     />
 
@@ -1864,11 +1789,7 @@ export default function AdminTours() {
 
           <div className="mt-5 grid gap-3 sm:grid-cols-2 md:grid-cols-3">
             {(form.departureDates || []).map((date: string, index: number) => (
-              <div
-                key={index}
-                data-error-field={`departureDates.${index}`}
-                className="relative"
-              >
+              <div key={index} data-error-field={`departureDates.${index}`} className="relative">
                 <input
                   type="date"
                   className={`${inputClass} pr-10 ${
@@ -1895,9 +1816,7 @@ export default function AdminTours() {
             <div className="mt-5 rounded-xl border border-dashed border-slate-200 px-5 py-8 text-center dark:border-slate-800">
               <CalendarDays className="mx-auto h-6 w-6 text-slate-300 dark:text-slate-600" />
 
-              <p className="mt-2 text-xs text-slate-400">
-                Одоогоор явах огноо нэмэгдээгүй байна.
-              </p>
+              <p className="mt-2 text-xs text-slate-400">Одоогоор явах огноо нэмэгдээгүй байна.</p>
             </div>
           )}
         </section>
@@ -1970,9 +1889,7 @@ export default function AdminTours() {
       <section className="mt-8">
         <div className="mb-5 flex items-end justify-between">
           <div>
-            <h2 className="text-lg font-bold tracking-tight">
-              Бүртгэгдсэн аяллууд
-            </h2>
+            <h2 className="text-lg font-bold tracking-tight">Бүртгэгдсэн аяллууд</h2>
 
             <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
               Нийт {displayed.length} аялал
@@ -1989,9 +1906,7 @@ export default function AdminTours() {
                 Одоогоор аялал бүртгэгдээгүй байна.
               </p>
 
-              <p className="mt-1 text-xs text-slate-400">
-                Дээрх хэсгээс шинэ аялал үүсгэнэ үү.
-              </p>
+              <p className="mt-1 text-xs text-slate-400">Дээрх хэсгээс шинэ аялал үүсгэнэ үү.</p>
             </div>
           )}
 
@@ -2002,7 +1917,7 @@ export default function AdminTours() {
             >
               {/* IMAGE */}
 
-              <div className="relative h-24 w-full shrink-0 overflow-hidden rounded-xl bg-slate-100 sm:w-32 dark:bg-slate-800">
+              <div className="relative h-24 w-full shrink-0 overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-800 sm:w-32">
                 {tour.image ? (
                   <img
                     src={tour.image}
@@ -2043,19 +1958,13 @@ export default function AdminTours() {
                 </div>
 
                 <p className="mt-1.5 text-xs text-slate-500 dark:text-slate-400">
-                  {categoryLabel[tour.category] ||
-                    tour.category ||
-                    'Ангилалгүй'}{' '}
-                  · {tour.durationDays || 0} өдөр ·{' '}
-                  {Number(
-                    tour.discountPrice || tour.startingPrice || 0,
-                  ).toLocaleString()}{' '}
+                  {categoryLabel[tour.category] || tour.category || 'Ангилалгүй'} ·{' '}
+                  {tour.durationDays || 0} өдөр ·{' '}
+                  {Number(tour.discountPrice || tour.startingPrice || 0).toLocaleString()}{' '}
                   {tour.currency || 'MNT'}
                 </p>
 
-                {tour.country && (
-                  <p className="mt-1 text-xs text-slate-400">{tour.country}</p>
-                )}
+                {tour.country && <p className="mt-1 text-xs text-slate-400">{tour.country}</p>}
               </div>
 
               {/* ACTIONS */}

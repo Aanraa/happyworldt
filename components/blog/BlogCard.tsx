@@ -49,15 +49,12 @@ export default function BlogCard({ article, featured = false }: BlogCardProps) {
           )}{' '}
           <div className="mt-6">
             {' '}
-            <BlogMeta
-              createdAt={article.createdAt}
-              content={article.content}
-            />{' '}
+            <BlogMeta createdAt={article.createdAt} content={article.content} />{' '}
           </div>{' '}
           <div className="mt-7 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-slate-900 dark:text-white">
             {' '}
             Дэлгэрэнгүй{' '}
-            <ArrowUpRight className="h-3.5 w-3.5 text-[#a96f2d] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />{' '}
+            <ArrowUpRight className="h-3.5 w-3.5 text-[#a96f2d] transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />{' '}
           </div>{' '}
         </div>{' '}
       </Link>
@@ -96,11 +93,7 @@ export default function BlogCard({ article, featured = false }: BlogCardProps) {
         )}{' '}
         <div className="mt-2">
           {' '}
-          <BlogMeta
-            createdAt={article.createdAt}
-            content={article.content}
-            compact
-          />{' '}
+          <BlogMeta createdAt={article.createdAt} content={article.content} compact />{' '}
         </div>{' '}
       </div>{' '}
     </Link>

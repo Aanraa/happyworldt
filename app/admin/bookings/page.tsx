@@ -15,14 +15,7 @@ import {
   X,
   XCircle,
 } from 'lucide-react';
-import {
-  collection,
-  doc,
-  onSnapshot,
-  orderBy,
-  query,
-  updateDoc,
-} from 'firebase/firestore';
+import { collection, doc, onSnapshot, orderBy, query, updateDoc } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 type Booking = {
   id: string;
@@ -35,26 +28,20 @@ type Booking = {
   status?: string;
   createdAt?: any;
 };
-const statusConfig: Record<
-  string,
-  { label: string; className: string; icon: any }
-> = {
+const statusConfig: Record<string, { label: string; className: string; icon: any }> = {
   new: {
     label: 'Шинэ',
-    className:
-      'bg-blue-50 text-blue-700 dark:bg-blue-950/40 dark:text-blue-400',
+    className: 'bg-blue-50 text-blue-700 dark:bg-blue-950/40 dark:text-blue-400',
     icon: Clock3,
   },
   contacted: {
     label: 'Холбогдсон',
-    className:
-      'bg-amber-50 text-amber-700 dark:bg-amber-950/40 dark:text-amber-400',
+    className: 'bg-amber-50 text-amber-700 dark:bg-amber-950/40 dark:text-amber-400',
     icon: Phone,
   },
   confirmed: {
     label: 'Баталгаажсан',
-    className:
-      'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400',
+    className: 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400',
     icon: CheckCircle2,
   },
   cancelled: {
@@ -72,9 +59,7 @@ export default function Bookings() {
   useEffect(() => {
     const q = query(collection(db, 'bookings'), orderBy('createdAt', 'desc'));
     return onSnapshot(q, (snapshot) => {
-      setItems(
-        snapshot.docs.map((d) => ({ id: d.id, ...d.data() })) as Booking[],
-      );
+      setItems(snapshot.docs.map((d) => ({ id: d.id, ...d.data() })) as Booking[]);
     });
   }, []);
   const filteredItems = useMemo(() => {
@@ -181,18 +166,17 @@ export default function Bookings() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Нэр, email, утас, аялал эсвэл огноогоор хайх..."
-              className=" h-11 w-full rounded-lg border border-slate-200 bg-white pl-10 pr-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-slate-900 focus:ring-2 focus:ring-slate-900/5 dark:border-slate-700 dark:bg-slate-950 dark:text-white dark:hover:border-slate-600 dark:focus:border-slate-400 "
+              className="h-11 w-full rounded-lg border border-slate-200 bg-white pl-10 pr-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-slate-900 focus:ring-2 focus:ring-slate-900/5 dark:border-slate-700 dark:bg-slate-950 dark:text-white dark:hover:border-slate-600 dark:focus:border-slate-400"
             />{' '}
           </div>{' '}
           {/* Status Filter */}{' '}
           <select
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value)}
-            className=" h-11 rounded-lg border border-slate-200 bg-white px-4 text-sm font-medium text-slate-700 outline-none transition hover:border-slate-300 focus:border-slate-900 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-300 "
+            className="h-11 rounded-lg border border-slate-200 bg-white px-4 text-sm font-medium text-slate-700 outline-none transition hover:border-slate-300 focus:border-slate-900 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-300"
           >
             {' '}
-            <option value="all">Бүх төлөв</option>{' '}
-            <option value="new">Шинэ</option>{' '}
+            <option value="all">Бүх төлөв</option> <option value="new">Шинэ</option>{' '}
             <option value="contacted">Холбогдсон</option>{' '}
             <option value="confirmed">Баталгаажсан</option>{' '}
             <option value="cancelled">Цуцлагдсан</option>{' '}
@@ -252,22 +236,10 @@ export default function Bookings() {
                     {' '}
                     CUSTOMER{' '}
                   </th>{' '}
-                  <th className="px-5 py-4 text-xs font-semibold text-slate-500">
-                    {' '}
-                    TOUR{' '}
-                  </th>{' '}
-                  <th className="px-5 py-4 text-xs font-semibold text-slate-500">
-                    {' '}
-                    DEPARTURE{' '}
-                  </th>{' '}
-                  <th className="px-5 py-4 text-xs font-semibold text-slate-500">
-                    {' '}
-                    TRAVELERS{' '}
-                  </th>{' '}
-                  <th className="px-5 py-4 text-xs font-semibold text-slate-500">
-                    {' '}
-                    STATUS{' '}
-                  </th>{' '}
+                  <th className="px-5 py-4 text-xs font-semibold text-slate-500"> TOUR </th>{' '}
+                  <th className="px-5 py-4 text-xs font-semibold text-slate-500"> DEPARTURE </th>{' '}
+                  <th className="px-5 py-4 text-xs font-semibold text-slate-500"> TRAVELERS </th>{' '}
+                  <th className="px-5 py-4 text-xs font-semibold text-slate-500"> STATUS </th>{' '}
                   <th className="px-5 py-4 text-right text-xs font-semibold text-slate-500">
                     {' '}
                     ACTION{' '}
@@ -282,7 +254,7 @@ export default function Bookings() {
                   return (
                     <tr
                       key={b.id}
-                      className="border-b border-slate-100 transition hover:bg-slate-50/70 last:border-0 dark:border-slate-800 dark:hover:bg-slate-950/50"
+                      className="border-b border-slate-100 transition last:border-0 hover:bg-slate-50/70 dark:border-slate-800 dark:hover:bg-slate-950/50"
                     >
                       {' '}
                       {/* Customer */}{' '}
@@ -320,10 +292,7 @@ export default function Bookings() {
                             {' '}
                             {b.tourName || 'Аялал сонгоогүй'}{' '}
                           </p>{' '}
-                          <p className="mt-1 text-xs text-slate-400">
-                            {' '}
-                            Аяллын захиалга{' '}
-                          </p>{' '}
+                          <p className="mt-1 text-xs text-slate-400"> Аяллын захиалга </p>{' '}
                         </div>{' '}
                       </td>{' '}
                       {/* Date */}{' '}
@@ -340,8 +309,7 @@ export default function Bookings() {
                         {' '}
                         <div className="inline-flex items-center gap-2 rounded-lg bg-slate-100 px-3 py-2 text-xs font-semibold text-slate-700 dark:bg-slate-800 dark:text-slate-300">
                           {' '}
-                          <Users className="h-3.5 w-3.5" /> {b.travelers || 0}{' '}
-                          хүн{' '}
+                          <Users className="h-3.5 w-3.5" /> {b.travelers || 0} хүн{' '}
                         </div>{' '}
                       </td>{' '}
                       {/* Status */}{' '}
@@ -428,10 +396,7 @@ export default function Bookings() {
                   {' '}
                   <div>
                     {' '}
-                    <p className="text-[10px] text-slate-400">
-                      {' '}
-                      Явах огноо{' '}
-                    </p>{' '}
+                    <p className="text-[10px] text-slate-400"> Явах огноо </p>{' '}
                     <p className="mt-1 text-xs font-semibold text-slate-700 dark:text-slate-300">
                       {' '}
                       {b.departureDate || '-'}{' '}
@@ -439,10 +404,7 @@ export default function Bookings() {
                   </div>{' '}
                   <div>
                     {' '}
-                    <p className="text-[10px] text-slate-400">
-                      {' '}
-                      Аялагчид{' '}
-                    </p>{' '}
+                    <p className="text-[10px] text-slate-400"> Аялагчид </p>{' '}
                     <p className="mt-1 text-xs font-semibold text-slate-700 dark:text-slate-300">
                       {' '}
                       {b.travelers || 0} хүн{' '}
@@ -459,8 +421,7 @@ export default function Bookings() {
                   className={`h-9 flex-1 rounded-lg border-0 px-3 text-xs font-semibold outline-none ring-1 ring-inset ring-slate-200 dark:ring-slate-700 ${status.className}`}
                 >
                   {' '}
-                  <option value="new">Шинэ</option>{' '}
-                  <option value="contacted">Холбогдсон</option>{' '}
+                  <option value="new">Шинэ</option> <option value="contacted">Холбогдсон</option>{' '}
                   <option value="confirmed">Баталгаажсан</option>{' '}
                   <option value="cancelled">Цуцлагдсан</option>{' '}
                 </select>{' '}
@@ -551,8 +512,7 @@ export default function Bookings() {
                   </p>{' '}
                   <div className="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300">
                     {' '}
-                    <Mail className="h-4 w-4 text-slate-400" />{' '}
-                    {selectedBooking.email || '-'}{' '}
+                    <Mail className="h-4 w-4 text-slate-400" /> {selectedBooking.email || '-'}{' '}
                   </div>{' '}
                 </div>{' '}
                 <div>
@@ -563,8 +523,7 @@ export default function Bookings() {
                   </p>{' '}
                   <div className="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300">
                     {' '}
-                    <Phone className="h-4 w-4 text-slate-400" />{' '}
-                    {selectedBooking.phone || '-'}{' '}
+                    <Phone className="h-4 w-4 text-slate-400" /> {selectedBooking.phone || '-'}{' '}
                   </div>{' '}
                 </div>{' '}
               </div>{' '}
@@ -585,10 +544,7 @@ export default function Bookings() {
                     {' '}
                     <div>
                       {' '}
-                      <p className="text-[10px] text-slate-400">
-                        {' '}
-                        Явах огноо{' '}
-                      </p>{' '}
+                      <p className="text-[10px] text-slate-400"> Явах огноо </p>{' '}
                       <p className="mt-1 text-xs font-semibold text-slate-700 dark:text-slate-300">
                         {' '}
                         {selectedBooking.departureDate || '-'}{' '}
@@ -596,10 +552,7 @@ export default function Bookings() {
                     </div>{' '}
                     <div>
                       {' '}
-                      <p className="text-[10px] text-slate-400">
-                        {' '}
-                        Аялагчид{' '}
-                      </p>{' '}
+                      <p className="text-[10px] text-slate-400"> Аялагчид </p>{' '}
                       <p className="mt-1 text-xs font-semibold text-slate-700 dark:text-slate-300">
                         {' '}
                         {selectedBooking.travelers || 0} хүн{' '}
@@ -628,8 +581,7 @@ export default function Bookings() {
                   className="h-10 w-full rounded-lg border border-slate-200 bg-white px-3 text-sm font-medium text-slate-700 outline-none dark:border-slate-700 dark:bg-slate-950 dark:text-slate-300"
                 >
                   {' '}
-                  <option value="new">Шинэ</option>{' '}
-                  <option value="contacted">Холбогдсон</option>{' '}
+                  <option value="new">Шинэ</option> <option value="contacted">Холбогдсон</option>{' '}
                   <option value="confirmed">Баталгаажсан</option>{' '}
                   <option value="cancelled">Цуцлагдсан</option>{' '}
                 </select>{' '}
@@ -676,14 +628,8 @@ export default function Bookings() {
         </div>{' '}
         <div>
           {' '}
-          <p className="text-xs text-slate-500 dark:text-slate-400">
-            {' '}
-            {label}{' '}
-          </p>{' '}
-          <p className="mt-0.5 text-xl font-bold text-slate-950 dark:text-white">
-            {' '}
-            {value}{' '}
-          </p>{' '}
+          <p className="text-xs text-slate-500 dark:text-slate-400"> {label} </p>{' '}
+          <p className="mt-0.5 text-xl font-bold text-slate-950 dark:text-white"> {value} </p>{' '}
         </div>{' '}
       </div>{' '}
     </div>

@@ -55,9 +55,7 @@ function isValidDepartureDate(value: string, today: string) {
   const parsed = new Date(year, month - 1, day);
 
   return (
-    parsed.getFullYear() === year &&
-    parsed.getMonth() === month - 1 &&
-    parsed.getDate() === day
+    parsed.getFullYear() === year && parsed.getMonth() === month - 1 && parsed.getDate() === day
   );
 }
 
@@ -100,9 +98,7 @@ export default function TourDetail({ params }: TourDetailProps) {
       try {
         setLoading(true);
 
-        const snapshot = await getDocs(
-          query(collection(db, 'tours'), where('slug', '==', slug)),
-        );
+        const snapshot = await getDocs(query(collection(db, 'tours'), where('slug', '==', slug)));
 
         const matched = snapshot.docs.find((doc) => {
           const value = doc.data();
@@ -168,9 +164,7 @@ export default function TourDetail({ params }: TourDetailProps) {
     : [];
 
   const today = getToday();
-  const validDepartureDates = departureDates.filter((date) =>
-    isValidDepartureDate(date, today),
-  );
+  const validDepartureDates = departureDates.filter((date) => isValidDepartureDate(date, today));
   const hasDepartureDates = validDepartureDates.length > 0;
   const travelerCount = form.adults + form.children;
   const groupCount = Number(data?.groupCount);
@@ -258,9 +252,7 @@ export default function TourDetail({ params }: TourDetailProps) {
     }
 
     if (!user) {
-      setBookingError(
-        'Захиалга үүсгэхийн тулд эхлээд өөрийн бүртгэлээр нэвтэрнэ үү.',
-      );
+      setBookingError('Захиалга үүсгэхийн тулд эхлээд өөрийн бүртгэлээр нэвтэрнэ үү.');
       return;
     }
 
@@ -416,10 +408,8 @@ export default function TourDetail({ params }: TourDetailProps) {
               linear-gradient(to bottom, rgba(15,23,42,0.045) 1px, transparent 1px)
             `,
             backgroundSize: '64px 64px',
-            maskImage:
-              'linear-gradient(to bottom, black 0%, black 55%, transparent 100%)',
-            WebkitMaskImage:
-              'linear-gradient(to bottom, black 0%, black 55%, transparent 100%)',
+            maskImage: 'linear-gradient(to bottom, black 0%, black 55%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 55%, transparent 100%)',
           }}
         />
 
@@ -446,9 +436,7 @@ export default function TourDetail({ params }: TourDetailProps) {
               <Heart
                 size={20}
                 className={
-                  isFavorite
-                    ? 'fill-red-500 text-red-500'
-                    : 'text-slate-700 dark:text-slate-200'
+                  isFavorite ? 'fill-red-500 text-red-500' : 'text-slate-700 dark:text-slate-200'
                 }
               />
             </button>
@@ -502,11 +490,7 @@ export default function TourDetail({ params }: TourDetailProps) {
                 <InfoCard
                   icon={<Users size={17} />}
                   label="Группийн тоо"
-                  value={
-                    data.groupCount
-                      ? `${data.groupCount} групп`
-                      : 'Мэдээлэл хараахан ороогүй'
-                  }
+                  value={data.groupCount ? `${data.groupCount} групп` : 'Мэдээлэл хараахан ороогүй'}
                 />
 
                 <InfoCard
@@ -548,9 +532,7 @@ export default function TourDetail({ params }: TourDetailProps) {
                           </div>
 
                           <div className="min-w-0">
-                            <p className="text-sm font-bold">
-                              {d.title || `${index + 1}-р өдөр`}
-                            </p>
+                            <p className="text-sm font-bold">{d.title || `${index + 1}-р өдөр`}</p>
 
                             {d.detail && (
                               <p className="mt-2 text-sm leading-7 text-slate-500 dark:text-slate-400">
@@ -600,9 +582,7 @@ export default function TourDetail({ params }: TourDetailProps) {
                           Excluded
                         </p>
 
-                        <h3 className="mt-3 text-xl font-bold">
-                          Үнэд багтаагүй
-                        </h3>
+                        <h3 className="mt-3 text-xl font-bold">Үнэд багтаагүй</h3>
 
                         <div className="mt-5 space-y-3">
                           {data.excluded.map((item: string, i: number) => (
@@ -642,13 +622,11 @@ export default function TourDetail({ params }: TourDetailProps) {
                   </span>
                 </div>
 
-                {data.discountPrice > 0 &&
-                  data.discountPrice < data.startingPrice && (
-                    <p className="mt-1 text-sm text-slate-400 line-through">
-                      {Number(data.startingPrice).toLocaleString()}{' '}
-                      {data.currency || 'MNT'}
-                    </p>
-                  )}
+                {data.discountPrice > 0 && data.discountPrice < data.startingPrice && (
+                  <p className="mt-1 text-sm text-slate-400 line-through">
+                    {Number(data.startingPrice).toLocaleString()} {data.currency || 'MNT'}
+                  </p>
+                )}
 
                 <div className="my-6 border-t border-slate-200 dark:border-slate-800" />
 
@@ -657,9 +635,7 @@ export default function TourDetail({ params }: TourDetailProps) {
                     <CalendarDays className="mt-0.5 h-4 w-4 text-slate-400" />
 
                     <div>
-                      <p className="text-xs font-semibold text-slate-400">
-                        Явах боломжтой огноо
-                      </p>
+                      <p className="text-xs font-semibold text-slate-400">Явах боломжтой огноо</p>
 
                       <p className="mt-1 text-sm font-semibold">
                         {validDepartureDates.length} огноо
@@ -732,8 +708,7 @@ export default function TourDetail({ params }: TourDetailProps) {
                 </h2>
 
                 <p className="mx-auto mt-3 max-w-sm text-sm leading-7 text-slate-500 dark:text-slate-400">
-                  Таны захиалгыг хүлээн авлаа. Захиалгын төлөвийг өөрийн
-                  бүртгэлээс харах боломжтой.
+                  Таны захиалгыг хүлээн авлаа. Захиалгын төлөвийг өөрийн бүртгэлээс харах боломжтой.
                 </p>
 
                 <div className="mt-7 rounded-2xl bg-slate-50 p-5 text-left dark:bg-slate-900">
@@ -787,9 +762,7 @@ export default function TourDetail({ params }: TourDetailProps) {
                     Tour booking
                   </p>
 
-                  <h2 className="mt-3 text-2xl font-bold tracking-tight">
-                    Аяллаа захиалах
-                  </h2>
+                  <h2 className="mt-3 text-2xl font-bold tracking-tight">Аяллаа захиалах</h2>
 
                   <p className="mt-2 text-sm leading-6 text-slate-500 dark:text-slate-400">
                     Доорх мэдээллийг сонгоод захиалгаа илгээнэ үү.
@@ -823,8 +796,7 @@ export default function TourDetail({ params }: TourDetailProps) {
                     </p>
 
                     <p className="mt-1 text-xs leading-5 text-amber-700 dark:text-amber-400">
-                      Захиалга үүсгэхийн тулд эхлээд өөрийн бүртгэлээр нэвтэрнэ
-                      үү.
+                      Захиалга үүсгэхийн тулд эхлээд өөрийн бүртгэлээр нэвтэрнэ үү.
                     </p>
 
                     <Link
@@ -897,9 +869,7 @@ export default function TourDetail({ params }: TourDetailProps) {
 
                     <TravelerCounter
                       title="Том хүн"
-                      subtitle={`${adultPrice.toLocaleString()} ${
-                        data.currency || 'MNT'
-                      } / хүн`}
+                      subtitle={`${adultPrice.toLocaleString()} ${data.currency || 'MNT'} / хүн`}
                       value={form.adults}
                       min={1}
                       onChange={(value) =>
@@ -916,9 +886,7 @@ export default function TourDetail({ params }: TourDetailProps) {
                       title="Хүүхэд"
                       subtitle={
                         childrenPrice > 0
-                          ? `${childrenPrice.toLocaleString()} ${
-                              data.currency || 'MNT'
-                            } / хүүхэд`
+                          ? `${childrenPrice.toLocaleString()} ${data.currency || 'MNT'} / хүүхэд`
                           : 'Хүүхдийн үнэ оруулаагүй'
                       }
                       value={form.children}
@@ -938,19 +906,13 @@ export default function TourDetail({ params }: TourDetailProps) {
 
                 <div className="mt-6 rounded-2xl bg-slate-950 p-5 text-white dark:bg-white dark:text-slate-950">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-white/60 dark:text-slate-500">
-                      Нийт аялагч
-                    </span>
+                    <span className="text-sm text-white/60 dark:text-slate-500">Нийт аялагч</span>
 
-                    <span className="text-sm font-semibold">
-                      {travelerCount}
-                    </span>
+                    <span className="text-sm font-semibold">{travelerCount}</span>
                   </div>
 
                   <div className="mt-4 flex items-end justify-between gap-4">
-                    <span className="text-sm text-white/60 dark:text-slate-500">
-                      Нийт үнэ
-                    </span>
+                    <span className="text-sm text-white/60 dark:text-slate-500">Нийт үнэ</span>
 
                     <span className="text-2xl font-bold">
                       {totalPrice.toLocaleString()}{' '}
@@ -989,8 +951,7 @@ export default function TourDetail({ params }: TourDetailProps) {
                 </button>
 
                 <p className="mt-4 text-center text-[11px] leading-5 text-slate-400">
-                  Захиалга илгээсний дараа манай ажилтан тантай холбогдож
-                  баталгаажуулна.
+                  Захиалга илгээсний дараа манай ажилтан тантай холбогдож баталгаажуулна.
                 </p>
               </div>
             )}
@@ -1005,15 +966,7 @@ export default function TourDetail({ params }: TourDetailProps) {
 // INFO CARD
 // ==================================================
 
-function InfoCard({
-  icon,
-  label,
-  value,
-}: {
-  icon: React.ReactNode;
-  label: string;
-  value: string;
-}) {
+function InfoCard({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
   return (
     <div className="rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-950">
       <div className="grid h-9 w-9 place-items-center rounded-lg bg-slate-100 text-slate-700 dark:bg-slate-900 dark:text-slate-300">

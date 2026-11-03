@@ -22,11 +22,7 @@ import {
 
 type AuthMode = 'login' | 'register';
 
-export default function AuthForm({
-  initialMode = 'login',
-}: {
-  initialMode?: AuthMode;
-}) {
+export default function AuthForm({ initialMode = 'login' }: { initialMode?: AuthMode }) {
   const [mode, setMode] = useState<AuthMode>(initialMode);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -51,9 +47,7 @@ export default function AuthForm({
   async function submitAuth() {
     if (!isLogin) {
       if (!firstName || !lastName || !phone || !email || !pw || !confirmPw) {
-        setErr(
-          'Нэр, овог, утасны дугаар, имэйл болон нууц үгээ бүрэн оруулна уу.',
-        );
+        setErr('Нэр, овог, утасны дугаар, имэйл болон нууц үгээ бүрэн оруулна уу.');
         return;
       }
     } else if (!email || !pw) {
@@ -161,10 +155,8 @@ export default function AuthForm({
             linear-gradient(to bottom, rgba(15,23,42,0.045) 1px, transparent 1px)
           `,
           backgroundSize: '64px 64px',
-          maskImage:
-            'linear-gradient(to bottom, black 0%, black 60%, transparent 100%)',
-          WebkitMaskImage:
-            'linear-gradient(to bottom, black 0%, black 60%, transparent 100%)',
+          maskImage: 'linear-gradient(to bottom, black 0%, black 60%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 60%, transparent 100%)',
         }}
       />
 
@@ -182,16 +174,14 @@ export default function AuthForm({
               <h1 className="text-[52px] font-bold leading-[1.04] tracking-[-0.055em]">
                 Дараагийн
                 <br />
-                <span className="text-slate-400 dark:text-slate-500">
-                  аялал чинь
-                </span>
+                <span className="text-slate-400 dark:text-slate-500">аялал чинь</span>
                 <br />
                 эндээс эхэлнэ.
               </h1>
 
               <p className="mt-5 max-w-md text-[14px] leading-6 text-slate-500 dark:text-slate-400">
-                Бүртгэлдээ нэвтэрч аяллын мэдээлэл, захиалга болон өөрт тохирсон
-                аяллуудаа нэг дороос хялбар удирдаарай.
+                Бүртгэлдээ нэвтэрч аяллын мэдээлэл, захиалга болон өөрт тохирсон аяллуудаа нэг
+                дороос хялбар удирдаарай.
               </p>
 
               <div className="mt-6 flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400">
@@ -375,9 +365,7 @@ export default function AuthForm({
                       className="h-11 w-full rounded-xl border border-slate-200 bg-slate-50 pl-10 pr-3.5 text-[13px] outline-none transition placeholder:text-slate-400 focus:border-slate-400 focus:bg-white focus:ring-4 focus:ring-slate-100 dark:border-slate-800 dark:bg-slate-950 dark:focus:border-slate-600 dark:focus:ring-slate-800/50"
                       placeholder="••••••••"
                       type="password"
-                      autoComplete={
-                        isLogin ? 'current-password' : 'new-password'
-                      }
+                      autoComplete={isLogin ? 'current-password' : 'new-password'}
                     />
                   </div>
                 </div>
@@ -456,9 +444,7 @@ export default function AuthForm({
                 {isLogin ? 'Account байхгүй юу?' : 'Бүртгэлтэй юу?'}{' '}
                 <button
                   type="button"
-                  onClick={() =>
-                    handleModeChange(isLogin ? 'register' : 'login')
-                  }
+                  onClick={() => handleModeChange(isLogin ? 'register' : 'login')}
                   className="font-semibold text-slate-950 underline-offset-4 transition hover:underline dark:text-white"
                 >
                   {isLogin ? 'Бүртгүүлэх' : 'Нэвтрэх'}

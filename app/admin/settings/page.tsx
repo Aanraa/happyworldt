@@ -95,8 +95,8 @@ export default function Settings() {
             </h2>
 
             <p className="mt-1.5 max-w-2xl text-sm leading-6 text-slate-500 dark:text-slate-400">
-              Сайтын холбоо барих болон сошиал мэдээллээ эндээс удирдана уу. Энд
-              хадгалсан мэдээлэл public website дээр автоматаар шинэчлэгдэнэ.
+              Сайтын холбоо барих болон сошиал мэдээллээ эндээс удирдана уу. Энд хадгалсан мэдээлэл
+              public website дээр автоматаар шинэчлэгдэнэ.
             </p>
           </div>
         </div>
@@ -117,9 +117,7 @@ export default function Settings() {
               </div>
 
               <div>
-                <h3 className="text-sm font-bold text-slate-950 dark:text-white">
-                  Сошиал холбоос
-                </h3>
+                <h3 className="text-sm font-bold text-slate-950 dark:text-white">Сошиал холбоос</h3>
 
                 <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">
                   Сайтын footer болон бусад хэсэгт харагдах холбоосууд
@@ -137,30 +135,7 @@ export default function Settings() {
               </label>
 
               <input
-                className="
-                  h-11
-                  w-full
-                  rounded-lg
-                  border
-                  border-slate-200
-                  bg-white
-                  px-4
-                  text-sm
-                  text-slate-900
-                  outline-none
-                  transition
-                  placeholder:text-slate-400
-                  hover:border-slate-300
-                  focus:border-slate-900
-                  focus:ring-2
-                  focus:ring-slate-900/5
-                  dark:border-slate-700
-                  dark:bg-slate-950
-                  dark:text-white
-                  dark:hover:border-slate-600
-                  dark:focus:border-slate-400
-                  dark:focus:ring-white/5
-                "
+                className="h-11 w-full rounded-lg border border-slate-200 bg-white px-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-slate-900 focus:ring-2 focus:ring-slate-900/5 dark:border-slate-700 dark:bg-slate-950 dark:text-white dark:hover:border-slate-600 dark:focus:border-slate-400 dark:focus:ring-white/5"
                 placeholder="https://facebook.com/..."
                 value={facebook}
                 onChange={(e) => setFacebook(e.target.value)}
@@ -175,30 +150,7 @@ export default function Settings() {
               </label>
 
               <input
-                className="
-                  h-11
-                  w-full
-                  rounded-lg
-                  border
-                  border-slate-200
-                  bg-white
-                  px-4
-                  text-sm
-                  text-slate-900
-                  outline-none
-                  transition
-                  placeholder:text-slate-400
-                  hover:border-slate-300
-                  focus:border-slate-900
-                  focus:ring-2
-                  focus:ring-slate-900/5
-                  dark:border-slate-700
-                  dark:bg-slate-950
-                  dark:text-white
-                  dark:hover:border-slate-600
-                  dark:focus:border-slate-400
-                  dark:focus:ring-white/5
-                "
+                className="h-11 w-full rounded-lg border border-slate-200 bg-white px-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-slate-900 focus:ring-2 focus:ring-slate-900/5 dark:border-slate-700 dark:bg-slate-950 dark:text-white dark:hover:border-slate-600 dark:focus:border-slate-400 dark:focus:ring-white/5"
                 placeholder="https://instagram.com/..."
                 value={instagram}
                 onChange={(e) => setInstagram(e.target.value)}
@@ -242,30 +194,7 @@ export default function Settings() {
 
               <input
                 type="email"
-                className="
-                  h-11
-                  w-full
-                  rounded-lg
-                  border
-                  border-slate-200
-                  bg-white
-                  px-4
-                  text-sm
-                  text-slate-900
-                  outline-none
-                  transition
-                  placeholder:text-slate-400
-                  hover:border-slate-300
-                  focus:border-slate-900
-                  focus:ring-2
-                  focus:ring-slate-900/5
-                  dark:border-slate-700
-                  dark:bg-slate-950
-                  dark:text-white
-                  dark:hover:border-slate-600
-                  dark:focus:border-slate-400
-                  dark:focus:ring-white/5
-                "
+                className="h-11 w-full rounded-lg border border-slate-200 bg-white px-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-slate-900 focus:ring-2 focus:ring-slate-900/5 dark:border-slate-700 dark:bg-slate-950 dark:text-white dark:hover:border-slate-600 dark:focus:border-slate-400 dark:focus:ring-white/5"
                 placeholder="info@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -281,30 +210,7 @@ export default function Settings() {
 
               <input
                 type="tel"
-                className="
-                  h-11
-                  w-full
-                  rounded-lg
-                  border
-                  border-slate-200
-                  bg-white
-                  px-4
-                  text-sm
-                  text-slate-900
-                  outline-none
-                  transition
-                  placeholder:text-slate-400
-                  hover:border-slate-300
-                  focus:border-slate-900
-                  focus:ring-2
-                  focus:ring-slate-900/5
-                  dark:border-slate-700
-                  dark:bg-slate-950
-                  dark:text-white
-                  dark:hover:border-slate-600
-                  dark:focus:border-slate-400
-                  dark:focus:ring-white/5
-                "
+                className="h-11 w-full rounded-lg border border-slate-200 bg-white px-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-slate-900 focus:ring-2 focus:ring-slate-900/5 dark:border-slate-700 dark:bg-slate-950 dark:text-white dark:hover:border-slate-600 dark:focus:border-slate-400 dark:focus:ring-white/5"
                 placeholder="9900 0000"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
@@ -319,33 +225,7 @@ export default function Settings() {
               </label>
 
               <textarea
-                className="
-                  min-h-[100px]
-                  w-full
-                  resize-none
-                  rounded-lg
-                  border
-                  border-slate-200
-                  bg-white
-                  px-4
-                  py-3
-                  text-sm
-                  leading-6
-                  text-slate-900
-                  outline-none
-                  transition
-                  placeholder:text-slate-400
-                  hover:border-slate-300
-                  focus:border-slate-900
-                  focus:ring-2
-                  focus:ring-slate-900/5
-                  dark:border-slate-700
-                  dark:bg-slate-950
-                  dark:text-white
-                  dark:hover:border-slate-600
-                  dark:focus:border-slate-400
-                  dark:focus:ring-white/5
-                "
+                className="min-h-[100px] w-full resize-none rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-900 outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-slate-900 focus:ring-2 focus:ring-slate-900/5 dark:border-slate-700 dark:bg-slate-950 dark:text-white dark:hover:border-slate-600 dark:focus:border-slate-400 dark:focus:ring-white/5"
                 placeholder="Байгууллагын хаяг"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
@@ -360,30 +240,7 @@ export default function Settings() {
               </label>
 
               <input
-                className="
-                  h-11
-                  w-full
-                  rounded-lg
-                  border
-                  border-slate-200
-                  bg-white
-                  px-4
-                  text-sm
-                  text-slate-900
-                  outline-none
-                  transition
-                  placeholder:text-slate-400
-                  hover:border-slate-300
-                  focus:border-slate-900
-                  focus:ring-2
-                  focus:ring-slate-900/5
-                  dark:border-slate-700
-                  dark:bg-slate-950
-                  dark:text-white
-                  dark:hover:border-slate-600
-                  dark:focus:border-slate-400
-                  dark:focus:ring-white/5
-                "
+                className="h-11 w-full rounded-lg border border-slate-200 bg-white px-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-slate-900 focus:ring-2 focus:ring-slate-900/5 dark:border-slate-700 dark:bg-slate-950 dark:text-white dark:hover:border-slate-600 dark:focus:border-slate-400 dark:focus:ring-white/5"
                 placeholder="Даваа–Баасан, 09:00–18:00"
                 value={workingHours}
                 onChange={(e) => setWorkingHours(e.target.value)}
@@ -406,9 +263,7 @@ export default function Settings() {
               </div>
 
               <div>
-                <h3 className="text-sm font-bold text-slate-950 dark:text-white">
-                  Товч тайлбар
-                </h3>
+                <h3 className="text-sm font-bold text-slate-950 dark:text-white">Товч тайлбар</h3>
 
                 <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">
                   Компани болон үйлчилгээний талаар товч мэдээлэл
@@ -418,33 +273,7 @@ export default function Settings() {
           </div>
 
           <textarea
-            className="
-              min-h-[140px]
-              w-full
-              resize-none
-              rounded-lg
-              border
-              border-slate-200
-              bg-white
-              px-4
-              py-3.5
-              text-sm
-              leading-7
-              text-slate-900
-              outline-none
-              transition
-              placeholder:text-slate-400
-              hover:border-slate-300
-              focus:border-slate-900
-              focus:ring-2
-              focus:ring-slate-900/5
-              dark:border-slate-700
-              dark:bg-slate-950
-              dark:text-white
-              dark:hover:border-slate-600
-              dark:focus:border-slate-400
-              dark:focus:ring-white/5
-            "
+            className="min-h-[140px] w-full resize-none rounded-lg border border-slate-200 bg-white px-4 py-3.5 text-sm leading-7 text-slate-900 outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-slate-900 focus:ring-2 focus:ring-slate-900/5 dark:border-slate-700 dark:bg-slate-950 dark:text-white dark:hover:border-slate-600 dark:focus:border-slate-400 dark:focus:ring-white/5"
             placeholder="Компани, аяллын үйлчилгээнийхээ талаар товч тайлбар бичнэ үү..."
             value={description}
             onChange={(e) => setDescription(e.target.value)}
@@ -460,9 +289,7 @@ export default function Settings() {
               <>
                 <CheckCircle2 className="h-4 w-4 text-emerald-500" />
 
-                <p className="text-sm font-medium text-emerald-600 dark:text-emerald-400">
-                  {msg}
-                </p>
+                <p className="text-sm font-medium text-emerald-600 dark:text-emerald-400">{msg}</p>
               </>
             ) : (
               <p className="text-xs text-slate-500 dark:text-slate-400">
@@ -473,26 +300,7 @@ export default function Settings() {
 
           <button
             onClick={save}
-            className="
-              inline-flex
-              h-11
-              items-center
-              justify-center
-              gap-2
-              rounded-lg
-              bg-slate-950
-              px-6
-              text-sm
-              font-semibold
-              text-white
-              shadow-sm
-              transition
-              hover:bg-slate-800
-              active:scale-[0.99]
-              dark:bg-white
-              dark:text-slate-950
-              dark:hover:bg-slate-200
-            "
+            className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-slate-950 px-6 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 active:scale-[0.99] dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200"
           >
             <Save className="h-4 w-4" />
             Хадгалах

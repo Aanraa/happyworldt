@@ -3,23 +3,8 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { Nunito } from 'next/font/google';
-import {
-  ArrowLeft,
-  ArrowRight,
-  CalendarDays,
-  Clock3,
-  Copy,
-  Facebook,
-  Link2,
-} from 'lucide-react';
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  query,
-  where,
-} from 'firebase/firestore';
+import { ArrowLeft, ArrowRight, CalendarDays, Clock3, Copy, Facebook, Link2 } from 'lucide-react';
+import { collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 const nunito = Nunito({
   subsets: ['latin', 'cyrillic'],
@@ -81,11 +66,7 @@ export default function BlogArticlePage() {
           const found = snapshot.docs[0];
           currentArticle = { id: found.id, ...found.data() } as Article;
         } else {
-          /* * 2. Fallback to Firebase document ID */ const articleRef = doc(
-            db,
-            'articles',
-            slug,
-          );
+          /* * 2. Fallback to Firebase document ID */ const articleRef = doc(db, 'articles', slug);
           const articleSnap = await getDoc(articleRef);
           if (articleSnap.exists()) {
             currentArticle = {
@@ -96,10 +77,7 @@ export default function BlogArticlePage() {
         }
         setArticle(currentArticle);
         /* * Recommended articles */ if (currentArticle) {
-          const recQuery = query(
-            collection(db, 'articles'),
-            where('published', '==', true),
-          );
+          const recQuery = query(collection(db, 'articles'), where('published', '==', true));
           const recSnapshot = await getDocs(recQuery);
           const related = recSnapshot.docs
             .map((doc) => ({ id: doc.id, ...doc.data() }) as Article)
@@ -177,8 +155,7 @@ export default function BlogArticlePage() {
             Нийтлэл олдсонгүй.
           </h1>
           <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-slate-500 dark:text-slate-400">
-            Таны хайсан нийтлэл устсан эсвэл буруу холбоос ашигласан байж
-            магадгүй.
+            Таны хайсан нийтлэл устсан эсвэл буруу холбоос ашигласан байж магадгүй.
           </p>
           <Link
             href="/blog"
@@ -199,10 +176,8 @@ export default function BlogArticlePage() {
         style={{
           backgroundImage: ` linear-gradient( to right, rgba(15,23,42,0.04) 1px, transparent 1px ), linear-gradient( to bottom, rgba(15,23,42,0.04) 1px, transparent 1px ) `,
           backgroundSize: '64px 64px',
-          maskImage:
-            'linear-gradient(to bottom, black 0%, black 45%, transparent 100%)',
-          WebkitMaskImage:
-            'linear-gradient(to bottom, black 0%, black 45%, transparent 100%)',
+          maskImage: 'linear-gradient(to bottom, black 0%, black 45%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 45%, transparent 100%)',
         }}
       />
       <div className="relative mx-auto max-w-5xl px-5 py-12 sm:px-8 lg:px-10 lg:py-20">
@@ -320,8 +295,7 @@ export default function BlogArticlePage() {
             </div>
             <div>
               <p className="text-sm leading-7 text-slate-500 dark:text-slate-400 sm:text-base">
-                Аяллын санаа, зөвлөгөө болон сонирхолтой түүхүүдийг бидэнтэй
-                хамт олж мэдээрэй.
+                Аяллын санаа, зөвлөгөө болон сонирхолтой түүхүүдийг бидэнтэй хамт олж мэдээрэй.
               </p>
               <Link
                 href="/tours"
@@ -344,11 +318,7 @@ export default function BlogArticlePage() {
             </div>
             <div className="mt-8 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
               {recommended.map((item) => (
-                <Link
-                  key={item.id}
-                  href={`/blog/${item.slug || item.id}`}
-                  className="group block"
-                >
+                <Link key={item.id} href={`/blog/${item.slug || item.id}`} className="group block">
                   <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-800">
                     {item.coverImage ? (
                       <img

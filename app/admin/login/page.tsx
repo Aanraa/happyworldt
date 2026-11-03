@@ -1,2 +1,61 @@
-'use client'; import {useState} from 'react'; import {signInWithEmailAndPassword,GoogleAuthProvider,signInWithPopup} from 'firebase/auth'; import {auth} from '@/lib/firebase'; import {isAdmin} from '@/lib/auth'; import {useRouter} from 'next/navigation';
-export default function AdminLogin(){const[email,setEmail]=useState('casalablanca11@gmail.com');const[pw,setPw]=useState('');const[err,setErr]=useState('');const router=useRouter();async function check(){try{const c=await signInWithEmailAndPassword(auth,email,pw);if(await isAdmin(c.user.uid,c.user.email,c.user.emailVerified))router.push('/admin');else setErr('This account is not an admin.')}catch(e:any){setErr(e.message)}}async function google(){try{const c=await signInWithPopup(auth,new GoogleAuthProvider());if(await isAdmin(c.user.uid,c.user.email,c.user.emailVerified))router.push('/admin');else setErr('This Google account is not an admin.')}catch(e:any){setErr(e.message)}}return <main className="mx-auto max-w-md px-4 py-16"><div className="rounded-3xl border p-7 dark:border-slate-800"><p className="font-bold text-blue-600">HAPPY WORLD TOUR</p><h1 className="mt-2 text-3xl font-black">Admin login</h1>{err&&<p className="mt-4 rounded-xl bg-red-50 p-3 text-sm text-red-700">{err}</p>}<input className="mt-6 w-full rounded-xl border p-3 dark:bg-slate-900" value={email} onChange={e=>setEmail(e.target.value)} placeholder="Admin email"/><input className="mt-3 w-full rounded-xl border p-3 dark:bg-slate-900" value={pw} onChange={e=>setPw(e.target.value)} placeholder="Password" type="password"/><button onClick={check} className="mt-4 w-full rounded-xl bg-blue-600 p-3 font-bold text-white">Login</button><button onClick={google} className="mt-3 w-full rounded-xl border p-3 font-bold">Continue with Google</button></div></main>}
+'use client';
+import { useState } from 'react';
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { auth } from '@/lib/firebase';
+import { isAdmin } from '@/lib/auth';
+import { useRouter } from 'next/navigation';
+export default function AdminLogin() {
+  const [email, setEmail] = useState('casalablanca11@gmail.com');
+  const [pw, setPw] = useState('');
+  const [err, setErr] = useState('');
+  const router = useRouter();
+  async function check() {
+    try {
+      const c = await signInWithEmailAndPassword(auth, email, pw);
+      if (await isAdmin(c.user.uid, c.user.email, c.user.emailVerified)) router.push('/admin');
+      else setErr('This account is not an admin.');
+    } catch (e: any) {
+      setErr(e.message);
+    }
+  }
+  async function google() {
+    try {
+      const c = await signInWithPopup(auth, new GoogleAuthProvider());
+      if (await isAdmin(c.user.uid, c.user.email, c.user.emailVerified)) router.push('/admin');
+      else setErr('This Google account is not an admin.');
+    } catch (e: any) {
+      setErr(e.message);
+    }
+  }
+  return (
+    <main className="mx-auto max-w-md px-4 py-16">
+      <div className="rounded-3xl border p-7 dark:border-slate-800">
+        <p className="font-bold text-blue-600">HAPPY WORLD TOUR</p>
+        <h1 className="mt-2 text-3xl font-black">Admin login</h1>
+        {err && <p className="mt-4 rounded-xl bg-red-50 p-3 text-sm text-red-700">{err}</p>}
+        <input
+          className="mt-6 w-full rounded-xl border p-3 dark:bg-slate-900"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Admin email"
+        />
+        <input
+          className="mt-3 w-full rounded-xl border p-3 dark:bg-slate-900"
+          value={pw}
+          onChange={(e) => setPw(e.target.value)}
+          placeholder="Password"
+          type="password"
+        />
+        <button
+          onClick={check}
+          className="mt-4 w-full rounded-xl bg-blue-600 p-3 font-bold text-white"
+        >
+          Login
+        </button>
+        <button onClick={google} className="mt-3 w-full rounded-xl border p-3 font-bold">
+          Continue with Google
+        </button>
+      </div>
+    </main>
+  );
+}

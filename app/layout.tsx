@@ -12,14 +12,10 @@ const jakarta = Plus_Jakarta_Sans({
   display: 'swap',
 });
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="mn" suppressHydrationWarning>
-      <body className={`${jakarta.variable} min-h-screen flex flex-col`}>
+      <body className={`${jakarta.variable} flex min-h-screen flex-col`}>
         <ThemeProvider>
           <AuthProvider>
             <Header />

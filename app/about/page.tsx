@@ -3,16 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { doc, getDoc } from 'firebase/firestore';
-import {
-  ArrowRight,
-  CalendarDays,
-  Clock3,
-  Mail,
-  MapPin,
-  Phone,
-  Plane,
-  Users,
-} from 'lucide-react';
+import { ArrowRight, CalendarDays, Clock3, Mail, MapPin, Phone, Plane, Users } from 'lucide-react';
 import { db } from '@/lib/firebase';
 
 type SiteSettings = {
@@ -64,10 +55,8 @@ export default function About() {
             linear-gradient(to bottom, rgba(15,23,42,0.045) 1px, transparent 1px)
           `,
           backgroundSize: '64px 64px',
-          maskImage:
-            'linear-gradient(to bottom, black 0%, black 65%, transparent 100%)',
-          WebkitMaskImage:
-            'linear-gradient(to bottom, black 0%, black 65%, transparent 100%)',
+          maskImage: 'linear-gradient(to bottom, black 0%, black 65%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 65%, transparent 100%)',
         }}
       />
       ```
@@ -78,22 +67,19 @@ export default function About() {
         HERO
     ========================== */}
         <section className="mx-auto max-w-4xl text-center">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-slate-500 bold dark:text-slate-400">
+          <p className="bold text-[11px] font-semibold uppercase tracking-[0.32em] text-slate-500 dark:text-slate-400">
             HWT
           </p>
 
           <h1 className="mt-5 text-4xl font-bold tracking-[-0.05em] text-slate-950 dark:text-white sm:text-5xl lg:text-[62px] lg:leading-[1.03]">
             Happy
             <br />
-            <span className="text-slate-400 dark:text-slate-500">
-              World Tour
-            </span>
+            <span className="text-slate-400 dark:text-slate-500">World Tour</span>
           </h1>
 
           <p className="mx-auto mt-7 max-w-2xl text-[15px] leading-7 text-slate-500 dark:text-slate-400 sm:text-base">
-            Happy World Tour нь аялагчдад тохирсон аяллаа сонгоход нь тусалж,
-            аяллын туршлагыг илүү хялбар, ойлгомжтой, найдвартай байлгахыг
-            зорьдог аяллын компани юм.
+            Happy World Tour нь аялагчдад тохирсон аяллаа сонгоход нь тусалж, аяллын туршлагыг илүү
+            хялбар, ойлгомжтой, найдвартай байлгахыг зорьдог аяллын компани юм.
           </p>
 
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -118,18 +104,13 @@ export default function About() {
         COMPANY STATS
     ========================== */}
         <section className="mx-auto mt-16 max-w-5xl border-y border-slate-200 py-8 dark:border-slate-800 sm:mt-20">
-          <div className="grid divide-y divide-slate-200 sm:grid-cols-3 sm:divide-x sm:divide-y-0 dark:divide-slate-800">
+          <div className="grid divide-y divide-slate-200 dark:divide-slate-800 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
             <div className="px-6 py-5 text-center sm:py-2">
               <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
-                <CalendarDays
-                  size={17}
-                  className="text-slate-600 dark:text-slate-300"
-                />
+                <CalendarDays size={17} className="text-slate-600 dark:text-slate-300" />
               </div>
 
-              <p className="mt-3 text-2xl font-bold tracking-tight">
-                {foundedYear}
-              </p>
+              <p className="mt-3 text-2xl font-bold tracking-tight">{foundedYear}</p>
 
               <p className="mt-1 text-xs font-medium uppercase tracking-[0.18em] text-slate-400">
                 Үйл ажиллагаа
@@ -138,15 +119,10 @@ export default function About() {
 
             <div className="px-6 py-5 text-center sm:py-2">
               <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
-                <Users
-                  size={17}
-                  className="text-slate-600 dark:text-slate-300"
-                />
+                <Users size={17} className="text-slate-600 dark:text-slate-300" />
               </div>
 
-              <p className="mt-3 text-2xl font-bold tracking-tight">
-                {teamSize}
-              </p>
+              <p className="mt-3 text-2xl font-bold tracking-tight">{teamSize}</p>
 
               <p className="mt-1 text-xs font-medium uppercase tracking-[0.18em] text-slate-400">
                 Манай баг
@@ -155,10 +131,7 @@ export default function About() {
 
             <div className="px-6 py-5 text-center sm:py-2">
               <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
-                <Plane
-                  size={17}
-                  className="text-slate-600 dark:text-slate-300"
-                />
+                <Plane size={17} className="text-slate-600 dark:text-slate-300" />
               </div>
 
               <p className="mt-3 text-2xl font-bold tracking-tight">Happy</p>
@@ -183,9 +156,7 @@ export default function About() {
               <h2 className="mt-4 text-3xl font-bold tracking-[-0.035em] sm:text-4xl">
                 Аяллыг илүү
                 <br />
-                <span className="text-slate-400 dark:text-slate-500">
-                  энгийн болгоё.
-                </span>
+                <span className="text-slate-400 dark:text-slate-500">энгийн болгоё.</span>
               </h2>
             </div>
 
@@ -197,15 +168,14 @@ export default function About() {
               </p>
 
               <p>
-                Бид аяллын мэдээллийг аль болох тодорхой хүргэж, таны хэрэгцээ
-                болон сонирхолд тохирсон сонголтыг олоход тань тусална. Бидний
-                хувьд аялал гэдэг зөвхөн нэг газраас нөгөө газар хүрэх биш, шинэ
-                зүйл мэдэрч, дурсамж бүтээх боломж юм.
+                Бид аяллын мэдээллийг аль болох тодорхой хүргэж, таны хэрэгцээ болон сонирхолд
+                тохирсон сонголтыг олоход тань тусална. Бидний хувьд аялал гэдэг зөвхөн нэг газраас
+                нөгөө газар хүрэх биш, шинэ зүйл мэдэрч, дурсамж бүтээх боломж юм.
               </p>
 
               <p>
-                Тиймээс бид аяллынхаа үйлчилгээг хүн бүрт ойлгомжтой,
-                найдвартай, тухтай байлгахыг зорьдог.
+                Тиймээс бид аяллынхаа үйлчилгээг хүн бүрт ойлгомжтой, найдвартай, тухтай байлгахыг
+                зорьдог.
               </p>
             </div>
           </div>
@@ -221,13 +191,11 @@ export default function About() {
                 Холбоо барих
               </p>
 
-              <h2 className="mt-4 text-3xl font-bold tracking-[-0.035em]">
-                Бидэнтэй ярилцаарай.
-              </h2>
+              <h2 className="mt-4 text-3xl font-bold tracking-[-0.035em]">Бидэнтэй ярилцаарай.</h2>
 
               <p className="mt-4 max-w-md text-sm leading-7 text-slate-500 dark:text-slate-400">
-                Аяллын талаар асуух зүйл байвал бидэнтэй холбогдоорой. Танд
-                тохирох аяллыг хамтдаа сонгоход бид баяртай байх болно.
+                Аяллын талаар асуух зүйл байвал бидэнтэй холбогдоорой. Танд тохирох аяллыг хамтдаа
+                сонгоход бид баяртай байх болно.
               </p>
 
               <Link
@@ -243,10 +211,7 @@ export default function About() {
               {settings.phone && (
                 <div className="flex gap-4">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
-                    <Phone
-                      size={17}
-                      className="text-slate-600 dark:text-slate-300"
-                    />
+                    <Phone size={17} className="text-slate-600 dark:text-slate-300" />
                   </div>
 
                   <div>
@@ -267,10 +232,7 @@ export default function About() {
               {settings.email && (
                 <div className="flex gap-4">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
-                    <Mail
-                      size={17}
-                      className="text-slate-600 dark:text-slate-300"
-                    />
+                    <Mail size={17} className="text-slate-600 dark:text-slate-300" />
                   </div>
 
                   <div className="min-w-0">
@@ -291,10 +253,7 @@ export default function About() {
               {settings.address && (
                 <div className="flex gap-4">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
-                    <MapPin
-                      size={17}
-                      className="text-slate-600 dark:text-slate-300"
-                    />
+                    <MapPin size={17} className="text-slate-600 dark:text-slate-300" />
                   </div>
 
                   <div>
@@ -302,9 +261,7 @@ export default function About() {
                       Хаяг
                     </p>
 
-                    <p className="mt-1.5 text-sm font-semibold leading-6">
-                      {settings.address}
-                    </p>
+                    <p className="mt-1.5 text-sm font-semibold leading-6">{settings.address}</p>
                   </div>
                 </div>
               )}
@@ -312,10 +269,7 @@ export default function About() {
               {settings.workingHours && (
                 <div className="flex gap-4">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
-                    <Clock3
-                      size={17}
-                      className="text-slate-600 dark:text-slate-300"
-                    />
+                    <Clock3 size={17} className="text-slate-600 dark:text-slate-300" />
                   </div>
 
                   <div>
@@ -364,9 +318,7 @@ export default function About() {
 
         {/* Small loading state is intentionally subtle */}
         {loading && (
-          <div className="mt-10 text-center text-xs text-slate-400">
-            Мэдээлэл ачааллаж байна...
-          </div>
+          <div className="mt-10 text-center text-xs text-slate-400">Мэдээлэл ачааллаж байна...</div>
         )}
       </div>
     </main>

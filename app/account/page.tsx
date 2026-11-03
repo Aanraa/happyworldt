@@ -8,14 +8,7 @@ import {
   updatePassword,
   updateProfile,
 } from 'firebase/auth';
-import {
-  collection,
-  doc,
-  onSnapshot,
-  query,
-  setDoc,
-  where,
-} from 'firebase/firestore';
+import { collection, doc, onSnapshot, query, setDoc, where } from 'firebase/firestore';
 import {
   ArrowRight,
   CalendarDays,
@@ -467,10 +460,7 @@ export default function Account() {
     setChangingPassword(true);
 
     try {
-      const credential = EmailAuthProvider.credential(
-        user.email,
-        currentPassword,
-      );
+      const credential = EmailAuthProvider.credential(user.email, currentPassword);
 
       await reauthenticateWithCredential(user, credential);
 
@@ -496,13 +486,11 @@ export default function Account() {
       }
 
       if (error?.code === 'auth/too-many-requests') {
-        message =
-          'Хэт олон оролдлого хийсэн байна. Түр хүлээгээд дахин оролдоно уу.';
+        message = 'Хэт олон оролдлого хийсэн байна. Түр хүлээгээд дахин оролдоно уу.';
       }
 
       if (error?.code === 'auth/requires-recent-login') {
-        message =
-          'Аюулгүй байдлын үүднээс дахин нэвтэрч байж нууц үгээ солино уу.';
+        message = 'Аюулгүй байдлын үүднээс дахин нэвтэрч байж нууц үгээ солино уу.';
       }
 
       showToast('error', message);
@@ -583,10 +571,8 @@ export default function Account() {
             )
           `,
           backgroundSize: '64px 64px',
-          maskImage:
-            'linear-gradient(to bottom, black 0%, black 65%, transparent 100%)',
-          WebkitMaskImage:
-            'linear-gradient(to bottom, black 0%, black 65%, transparent 100%)',
+          maskImage: 'linear-gradient(to bottom, black 0%, black 65%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 65%, transparent 100%)',
         }}
       />
 
@@ -608,14 +594,11 @@ export default function Account() {
               <h1 className="text-4xl font-bold tracking-[-0.05em] sm:text-5xl">
                 Миний
                 <br />
-                <span className="text-slate-400 dark:text-slate-500">
-                  бүртгэл.
-                </span>
+                <span className="text-slate-400 dark:text-slate-500">бүртгэл.</span>
               </h1>
 
               <p className="mt-5 max-w-xl text-sm leading-7 text-slate-500 dark:text-slate-400">
-                Өөрийн мэдээлэл, нууцлал болон аяллын захиалгаа нэг дороос
-                удирдаарай.
+                Өөрийн мэдээлэл, нууцлал болон аяллын захиалгаа нэг дороос удирдаарай.
               </p>
             </div>
 
@@ -653,9 +636,7 @@ export default function Account() {
                       {profile.name || user.displayName || 'Хэрэглэгч'}
                     </h2>
 
-                    <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
-                      {user.email}
-                    </p>
+                    <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{user.email}</p>
                   </div>
                 </div>
 
@@ -684,9 +665,7 @@ export default function Account() {
                     Нэр
                   </p>
 
-                  <p className="mt-2 text-sm font-semibold">
-                    {profile.name || 'Оруулаагүй'}
-                  </p>
+                  <p className="mt-2 text-sm font-semibold">{profile.name || 'Оруулаагүй'}</p>
                 </div>
 
                 <div className="border-b border-slate-200 p-5 dark:border-slate-800 sm:border-b-0 sm:border-r">
@@ -694,9 +673,7 @@ export default function Account() {
                     Утас
                   </p>
 
-                  <p className="mt-2 text-sm font-semibold">
-                    {profile.phone || 'Оруулаагүй'}
-                  </p>
+                  <p className="mt-2 text-sm font-semibold">{profile.phone || 'Оруулаагүй'}</p>
                 </div>
 
                 <div className="p-5">
@@ -704,9 +681,7 @@ export default function Account() {
                     Хаяг
                   </p>
 
-                  <p className="mt-2 text-sm font-semibold">
-                    {profile.address || 'Оруулаагүй'}
-                  </p>
+                  <p className="mt-2 text-sm font-semibold">{profile.address || 'Оруулаагүй'}</p>
                 </div>
               </div>
             ) : (
@@ -721,9 +696,7 @@ export default function Account() {
                       className={inputClass}
                       value={profileForm.name}
                       placeholder="Таны нэр"
-                      onChange={(e) =>
-                        updateProfileField('name', e.target.value)
-                      }
+                      onChange={(e) => updateProfileField('name', e.target.value)}
                     />
                   </div>
 
@@ -748,9 +721,7 @@ export default function Account() {
                       className={inputClass}
                       value={profileForm.phone}
                       placeholder="99112233"
-                      onChange={(e) =>
-                        updateProfileField('phone', e.target.value)
-                      }
+                      onChange={(e) => updateProfileField('phone', e.target.value)}
                     />
                   </div>
 
@@ -763,9 +734,7 @@ export default function Account() {
                       className={inputClass}
                       value={profileForm.address}
                       placeholder="Улаанбаатар"
-                      onChange={(e) =>
-                        updateProfileField('address', e.target.value)
-                      }
+                      onChange={(e) => updateProfileField('address', e.target.value)}
                     />
                   </div>
                 </div>
@@ -1027,10 +996,7 @@ export default function Account() {
                       </h3>
 
                       <div className="flex h-8 w-8 items-center justify-center rounded-full bg-red-50 text-red-500">
-                        <svg
-                          viewBox="0 0 24 24"
-                          className="h-4 w-4 fill-current"
-                        >
+                        <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current">
                           <path d="M12 21.35 10.55 20C5.4 15.36 2 12.28 2 8.5A4.5 4.5 0 0 1 6.5 4c1.74 0 3.41.81 4.5 2.09A6.12 6.12 0 0 1 15.5 4 4.5 4.5 0 0 1 20 8.5c0 3.78-3.4 6.86-8.55 11.5L12 21.35Z" />
                         </svg>
                       </div>
@@ -1173,9 +1139,7 @@ export default function Account() {
                 <MapPin className="h-5 w-5 text-slate-500 dark:text-slate-400" />
               </div>
 
-              <h3 className="mt-5 text-base font-bold">
-                Одоогоор захиалга алга
-              </h3>
+              <h3 className="mt-5 text-base font-bold">Одоогоор захиалга алга</h3>
 
               <p className="mx-auto mt-2 max-w-sm text-sm leading-6 text-slate-500 dark:text-slate-400">
                 Дараагийн аяллаа сонгоод шинэ дурсамжаа эхлүүлээрэй.
@@ -1203,9 +1167,7 @@ export default function Account() {
                 Next destination
               </p>
 
-              <h2 className="mt-2 text-xl font-bold tracking-tight">
-                Дараагийн аялал хаашаа вэ?
-              </h2>
+              <h2 className="mt-2 text-xl font-bold tracking-tight">Дараагийн аялал хаашаа вэ?</h2>
             </div>
 
             <Link
@@ -1224,7 +1186,7 @@ export default function Account() {
       ========================== */}
 
       {toast && (
-        <div className="fixed bottom-5 right-5 z-[100] w-[calc(100%-40px)] max-w-sm animate-in slide-in-from-right-5 fade-in duration-300">
+        <div className="animate-in slide-in-from-right-5 fade-in fixed bottom-5 right-5 z-[100] w-[calc(100%-40px)] max-w-sm duration-300">
           <div
             className={`flex items-start gap-3 rounded-xl border bg-white p-4 shadow-xl dark:bg-slate-900 ${
               toast.type === 'success'
@@ -1239,11 +1201,7 @@ export default function Account() {
                   : 'bg-red-50 text-red-600 dark:bg-red-950/40 dark:text-red-400'
               }`}
             >
-              {toast.type === 'success' ? (
-                <Check className="h-4 w-4" />
-              ) : (
-                <X className="h-4 w-4" />
-              )}
+              {toast.type === 'success' ? <Check className="h-4 w-4" /> : <X className="h-4 w-4" />}
             </div>
 
             <div className="min-w-0 flex-1">

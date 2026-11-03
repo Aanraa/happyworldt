@@ -1,13 +1,6 @@
 'use client';
 import { useEffect, useMemo, useState } from 'react';
-import {
-  collection,
-  deleteDoc,
-  doc,
-  onSnapshot,
-  orderBy,
-  query,
-} from 'firebase/firestore';
+import { collection, deleteDoc, doc, onSnapshot, orderBy, query } from 'firebase/firestore';
 import {
   CheckCircle2,
   Clock3,
@@ -36,9 +29,7 @@ export default function Messages() {
   useEffect(() => {
     const q = query(collection(db, 'messages'), orderBy('createdAt', 'desc'));
     return onSnapshot(q, (snapshot) => {
-      setItems(
-        snapshot.docs.map((d) => ({ id: d.id, ...d.data() })) as Message[],
-      );
+      setItems(snapshot.docs.map((d) => ({ id: d.id, ...d.data() })) as Message[]);
     });
   }, []);
   const filteredItems = useMemo(() => {
@@ -66,9 +57,7 @@ export default function Messages() {
     }
   };
   async function removeMessage(id: string) {
-    const confirmed = window.confirm(
-      'Энэ мессежийг устгахдаа итгэлтэй байна уу?',
-    );
+    const confirmed = window.confirm('Энэ мессежийг устгахдаа итгэлтэй байна уу?');
     if (!confirmed) return;
     try {
       setDeleting(id);
@@ -100,8 +89,7 @@ export default function Messages() {
             </h1>{' '}
             <p className="mt-1.5 text-sm leading-6 text-slate-500 dark:text-slate-400">
               {' '}
-              Хэрэглэгчдээс ирсэн санал хүсэлт болон холбоо барих мессежүүдийг
-              эндээс удирдана.{' '}
+              Хэрэглэгчдээс ирсэн санал хүсэлт болон холбоо барих мессежүүдийг эндээс удирдана.{' '}
             </p>{' '}
           </div>{' '}
         </div>{' '}
@@ -121,7 +109,7 @@ export default function Messages() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Нэр, email, утас эсвэл мессежээр хайх..."
-            className=" h-11 w-full rounded-lg border border-slate-200 bg-white pl-10 pr-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-slate-900 focus:ring-2 focus:ring-slate-900/5 dark:border-slate-700 dark:bg-slate-950 dark:text-white dark:hover:border-slate-600 dark:focus:border-slate-400 "
+            className="h-11 w-full rounded-lg border border-slate-200 bg-white pl-10 pr-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-slate-900 focus:ring-2 focus:ring-slate-900/5 dark:border-slate-700 dark:bg-slate-950 dark:text-white dark:hover:border-slate-600 dark:focus:border-slate-400"
           />{' '}
         </div>{' '}
       </section>{' '}
@@ -138,10 +126,7 @@ export default function Messages() {
             </div>{' '}
             <div>
               {' '}
-              <p className="text-xs text-slate-500 dark:text-slate-400">
-                {' '}
-                Нийт мессеж{' '}
-              </p>{' '}
+              <p className="text-xs text-slate-500 dark:text-slate-400"> Нийт мессеж </p>{' '}
               <p className="mt-0.5 text-xl font-bold text-slate-950 dark:text-white">
                 {' '}
                 {items.length}{' '}
@@ -218,7 +203,7 @@ export default function Messages() {
           {filteredItems.map((m) => (
             <article
               key={m.id}
-              className=" group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-slate-300 hover:shadow-md dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 "
+              className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-slate-300 hover:shadow-md dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700"
             >
               {' '}
               {/* Top */}{' '}
@@ -264,8 +249,7 @@ export default function Messages() {
                 {/* Date */}{' '}
                 <div className="flex shrink-0 items-center gap-1.5 text-xs text-slate-400">
                   {' '}
-                  <Clock3 className="h-3.5 w-3.5" />{' '}
-                  {formatDate(m.createdAt)}{' '}
+                  <Clock3 className="h-3.5 w-3.5" /> {formatDate(m.createdAt)}{' '}
                 </div>{' '}
               </div>{' '}
               {/* Message */}{' '}
@@ -281,16 +265,15 @@ export default function Messages() {
                 {' '}
                 <button
                   onClick={() => setSelectedMessage(m)}
-                  className=" inline-flex h-9 items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-3 text-xs font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 "
+                  className="inline-flex h-9 items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-3 text-xs font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
                 >
                   {' '}
-                  <MessageSquare className="h-3.5 w-3.5" /> Дэлгэрэнгүй
-                  харах{' '}
+                  <MessageSquare className="h-3.5 w-3.5" /> Дэлгэрэнгүй харах{' '}
                 </button>{' '}
                 <button
                   onClick={() => removeMessage(m.id)}
                   disabled={deleting === m.id}
-                  className=" inline-flex h-9 items-center justify-center gap-2 rounded-lg border border-red-100 bg-white px-3 text-xs font-semibold text-red-500 transition hover:border-red-200 hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50 dark:border-red-950 dark:bg-slate-900 dark:text-red-400 dark:hover:bg-red-950/30 "
+                  className="inline-flex h-9 items-center justify-center gap-2 rounded-lg border border-red-100 bg-white px-3 text-xs font-semibold text-red-500 transition hover:border-red-200 hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50 dark:border-red-950 dark:bg-slate-900 dark:text-red-400 dark:hover:bg-red-950/30"
                 >
                   {' '}
                   <Trash2 className="h-3.5 w-3.5" />{' '}
